@@ -10,17 +10,17 @@ import cors from "cors";
 import "@tsed/ajv";
 import "@tsed/mongoose";
 import {config} from "./config/index";
-import * as rest from "./controllers/rest/index";
+import { ScoreController } from './scores';
 
 @Configuration({
   ...config,
   acceptMimes: ["application/json"],
   httpPort: process.env.PORT || 8083,
-  httpsPort: false, // CHANGE
+  httpsPort: false,
   componentsScan: false,
   mount: {
-    "/rest": [
-      ...Object.values(rest)
+    "/api": [
+      ScoreController
     ]
   },
   middlewares: [
