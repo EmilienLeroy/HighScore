@@ -30,6 +30,7 @@
     "@tsed/platform-response-filter": "^6.125.2",
     "@tsed/platform-views": "^6.125.2",
     "@tsed/schema": "^6.125.2",
+    "@tsed/swagger": "^6.125.2",
     "ajv": "^8.11.0",
     "barrelsby": "^2.3.4",
     "body-parser": "^1.20.0",

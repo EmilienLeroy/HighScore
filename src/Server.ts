@@ -9,6 +9,7 @@ import methodOverride from "method-override";
 import cors from "cors";
 import "@tsed/ajv";
 import "@tsed/mongoose";
+import "@tsed/swagger"; 
 import {config} from "./config/index";
 import { ScoreController } from './scores';
 
@@ -23,6 +24,10 @@ import { ScoreController } from './scores';
       ScoreController
     ]
   },
+  swagger: [    {
+    path: "/docs",
+    specVersion: "3.0.1"
+  }],
   middlewares: [
     cors(),
     cookieParser(),
