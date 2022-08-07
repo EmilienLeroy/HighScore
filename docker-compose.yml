@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: high-score/server:latest
+    ports:
+      - '8081:8081'
+    stdin_open: true
+    tty: true
+  mongodb:
+    image: mongo:5.0.8
+    ports:
+      - '27017:27017'
