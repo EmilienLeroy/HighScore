@@ -1,5 +1,5 @@
 import { Model, ObjectID } from '@tsed/mongoose';
-import { Property, Required, Groups } from '@tsed/schema';
+import { Property, Required, Groups, Format } from '@tsed/schema';
 
 @Model({
   collection: 'scores',
@@ -21,4 +21,14 @@ export class Score {
   @Property()
   @Groups('read', 'create', 'update')
   public value: number;
+
+  @Groups('read')
+  @Format('date')
+  @Property()
+  public createdAt: Date;
+
+  @Groups('read')
+  @Format('date')
+  @Property()
+  public updatedAt: Date;
 }
