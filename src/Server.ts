@@ -29,6 +29,7 @@ import { HomeController } from "./home";
   },
   swagger: [    {
     path: "/docs",
+    pathPatterns: ["/api/**"],
     specVersion: "3.0.1"
   }],
   middlewares: [
