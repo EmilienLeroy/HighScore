@@ -12,6 +12,8 @@ import "@tsed/mongoose";
 import "@tsed/swagger"; 
 import {config} from "./config/index";
 import { ScoreController } from './scores';
+import { HomeController } from "./home";
+
 
 @Configuration({
   ...config,
@@ -20,6 +22,7 @@ import { ScoreController } from './scores';
   httpsPort: false,
   componentsScan: false,
   mount: {
+    "/": [HomeController],
     "/api": [
       ScoreController
     ]
@@ -43,6 +46,13 @@ import { ScoreController } from './scores';
     extensions: {
       ejs: "ejs"
     }
+  },
+  statics: {
+    "/": [
+      {
+        root: `./public`,
+      }
+    ]
   },
   exclude: [
     "**/*.spec.ts"
