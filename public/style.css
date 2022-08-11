@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --highscore-primary-color: #5ED8FF;
-  --highscore-secondary-color: #165692;
-  --highscore-gradient-color: linear-gradient(112.23deg, #5ED8FF 0%, #165692 103.45%, rgba(255, 255, 255, 0) 103.46%);
+  --highscore-primary-rgb: 94, 216, 255;
+  --highscore-secondary-rgb: 22, 86, 146;
+
+  --highscore-primary-color: rgb(var(--highscore-primary-rgb));
+  --highscore-secondary-color: rgb(var(--highscore-secondary-rgb));
+
+  --highscore-gradient-color: linear-gradient(112.23deg, var(--highscore-primary-color) 0%, var(--highscore-secondary-color) 103.45%);
 }
 
 * {
@@ -15,11 +19,16 @@ html {
   overflow: hidden;
 }
 
+a {
+  color: var(--highscore-primary-color);
+}
+
 .highscore {
   background-color: var(--highscore-secondary-color);
   background-image: var(--highscore-gradient-color);
   height: 100vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   font-family: 'Inter', sans-serif;
 }
 
@@ -72,6 +81,7 @@ html {
   flex-direction: column;
   align-items: center;
   margin-top: 2.5em;
+  margin-bottom: 2.5em;
 }
 
 .highscore__scores {
@@ -79,6 +89,23 @@ html {
   max-width: 650px;
   padding: 15px;
   box-sizing: border-box;
+}
+
+.highscore__footer {
+  background: rgba(var(--highscore-secondary-rgb), 0.4);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  height: 150px;
+  padding: 0px 40px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
 }
 
 .score {
