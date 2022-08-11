@@ -1,4 +1,23 @@
 <%- include('./_includes/header'); -%>
+<main class="highscore__main">
+    <h3 class="highscore__leaderboard">
+        leader<span>board</span>
+    </h3>
 
+    <div class="highscore__scores">
+        <% scores.forEach((score, index) => { %>
+            <div class="score">
+                <div class="score__name">
+                    <div class="score__position"><%= index + 1 %></div>
+                    <div><%= score.name %></div>
+                </div>
+                <div class="score__value">
+                    <div><%= score.value %></div>
+                    <div></div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</main>
 
 <%- include('./_includes/footer'); -%>
