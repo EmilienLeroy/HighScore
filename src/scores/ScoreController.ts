@@ -4,7 +4,7 @@ import { Controller, Inject } from '@tsed/di';
 import { ScoreService } from './ScoreService';
 import { Score } from './Score';
 import { InternalServerError, NotFound } from '@tsed/exceptions';
-import { BodyParams, PathParams } from '@tsed/common';
+import { BodyParams, PathParams, QueryParams } from '@tsed/common';
 
 @Controller('/scores')
 export class ScoreController {
@@ -13,9 +13,15 @@ export class ScoreController {
 
   @Get()
   @Returns(200, Array).Of(Score).Groups('read')
-  public get(): Promise<Score[]> {
+  public get(
+    @QueryParams('limit') limit?: number,
+    @QueryParams('skip') skip?: number
+  ): Promise<Score[]> {
     try {
-      return this.scoreService.getScores(); 
+      return this.scoreService.getScores({
+        limit,
+        skip,
+      }); 
     } catch (error) {
       throw new InternalServerError(error);
     }
