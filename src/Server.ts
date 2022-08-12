@@ -13,6 +13,7 @@ import "@tsed/swagger";
 import {config} from "./config/index";
 import { ScoreController } from './scores';
 import { HomeController } from "./home";
+import { InjectEnvMiddleware } from "./config/envs";
 
 
 @Configuration({
@@ -40,7 +41,8 @@ import { HomeController } from "./home";
     bodyParser.json(),
     bodyParser.urlencoded({
       extended: true
-    })
+    }),
+    InjectEnvMiddleware
   ],
   views: {
     root: join(process.cwd(), "../views"),

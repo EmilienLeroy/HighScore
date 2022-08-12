@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HighScore</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="shortcut icon" href="/favicon.ico" >
+    <title><%= locals.HIGHSCORE_TITLE  %></title>
+    <link rel="shortcut icon" href="<%= locals.HIGHSCORE_FAVICON_URL  %>" >
+    <% if (locals.HIGHSCORE_CSS_URL) { %>
+        <link rel="stylesheet" href="<%= locals.HIGHSCORE_CSS_URL  %>">
+    <% } %>
 </head>
 <body class="highscore">
     <div class="highscore__content">
         <header class="highscore__header">
-            <img class="highscore__logo" src="/logo.png" alt="">
+            <img class="highscore__logo" src="<%= locals.HIGHSCORE_LOGO_URL  %>" alt="">
             <div class="highscore__alt">
-                <h1 class="highscore__title">HighScore</h1>
-                <h2 class="highscore__description">Open Source leaderboard</h2>
+                <h1 class="highscore__title"><%= locals.HIGHSCORE_TITLE  %></h1>
+                <h2 class="highscore__description"><%= locals.HIGHSCORE_DESCRIPTION  %></h2>
             </div>
         </header>
