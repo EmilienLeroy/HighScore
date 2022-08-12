@@ -34,6 +34,7 @@ a {
 
 .highscore__content {
   max-width: 1000px;
+  min-height: 100vh;
   width: 100%;
   margin: auto;
 }
@@ -130,5 +131,41 @@ a {
 }
 
 .score__value {
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.pagination__link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border: solid white;
+  padding: 10px 20px;
+  width: 100%;
+  max-width: 75px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.pagination__link:not([href]) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination__link[href]:hover {
+  background-color: white;
+  color: var(--highscore-primary-color);
+}
+
+.pagination__page {
+  font-weight: bold;
   color: white;
 }

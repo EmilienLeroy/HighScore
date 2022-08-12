@@ -63,4 +63,11 @@ export class ScoreService {
   public async deleteScore(_id: string) {
     return this.Score.deleteOne({ _id });
   }
+
+  public async getNumberOfPages(limit: number) {
+    const scores = await this.getScores();
+    const pages = scores.length / limit;
+
+    return Math.ceil(pages);
+  }
 }

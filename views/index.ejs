@@ -17,6 +17,27 @@
                 </div>
             </div>
         <% }) %>
+        <div class="pagination">
+            <a 
+                class="pagination__link" 
+                <% if (page > 1) {%>  
+                    href="/?page=<%= page - 1 %>"
+                <% } %>
+            >
+                previous
+            </a>
+            <p class="pagination__page">
+                <%= page %> / <%= pages %>
+            </p>
+            <a 
+                class="pagination__link" 
+                <% if (page < pages) { %> 
+                    href="/?page=<%= page + 1 %>"
+                <% } %>
+            >
+                next
+            </a>
+        </div>
     </div>
 </main>
 
