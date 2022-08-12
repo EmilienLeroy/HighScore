@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
+  --highscore-logo-height: 115px;
+  --highscore-logo-width: 115px;
+
   --highscore-primary-rgb: 94, 216, 255;
   --highscore-secondary-rgb: 22, 86, 146;
   --highscore-white-rgb: 255, 255, 255;
@@ -48,7 +51,12 @@ a {
   display: flex;
   align-items: center;
   color: var(--highscore-white-color);
-  padding: 1.5em 0px;
+  padding: 1.5em 1.5em;
+}
+
+.highscore__logo {
+  width: var(--highscore-logo-width);
+  height: var(--highscore-gradient-color);
 }
 
 .highscore__alt {
@@ -174,4 +182,45 @@ a {
 .pagination__page {
   font-weight: bold;
   color: var(--highscore-white-color);
+}
+
+
+@media (max-width: 576px) { 
+  .highscore__header {
+    padding: 0.5em;
+  }
+  
+  .highscore__logo {
+    width: calc(var(--highscore-logo-width) / 1.5);
+    height: calc(var(--highscore-gradient-color) / 1.5);
+  }
+
+  .highscore__alt {
+    margin-left: 0.5em;
+  }
+
+  .highscore__title {
+    font-size: 28px;
+  }
+
+  .highscore__description {
+    font-size: 14px;
+  }
+
+  .highscore__main {
+    margin-top: 1.5em;
+  }
+
+  .highscore__leaderboard {
+    font-size: 32px;
+  }  
+
+  .score__name, .score__value {
+    font-size: 20px;
+  }
+
+  .score__position {
+    font-size: 27px;
+    margin: 0 15px 0px 2px;
+  }
 }
