@@ -56,3 +56,4 @@ test/**/*.js.map
 .env.local
 .env.development
 
+custom

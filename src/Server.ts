@@ -55,7 +55,10 @@ import { InjectEnvMiddleware } from "./config/envs";
       {
         root: `./public`,
       }
-    ]
+    ],
+    "/custom": [{
+      root: './custom'
+    }]
   },
   exclude: [
     "**/*.spec.ts"
