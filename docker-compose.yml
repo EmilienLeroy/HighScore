@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  server:
+  highscore:
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -8,12 +8,27 @@ services:
         - http_proxy
         - https_proxy
         - no_proxy
-    image: high-score/server:latest
+    image: highscore:latest
     ports:
       - '8081:8081'
+    depends_on:
+      - "mongo"
     stdin_open: true
     tty: true
-  mongodb:
+    volumes:
+      - ./custom:/opt/custom
+    environment:
+      - HIGHSCORE_DB_URL=mongodb://mongo:27017/highscore
+      - HIGHSCORE_TITLE=
+      - HIGHSCORE_DESCRIPTION=
+      - HIGHSCORE_LOGO_URL=
+      - HIGHSCORE_FAVICON_URL=
+      - HIGHSCORE_CSS_URL=
+
+  mongo:
     image: mongo:5.0.8
-    ports:
-      - '27017:27017'
+    volumes:
+      - data:/data/db
+
+volumes: 
+  data:

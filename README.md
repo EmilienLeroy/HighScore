@@ -22,9 +22,6 @@
 
 ## Roadmap
 
-- [ ] Custom css and assets.
-- [ ] Env variables.
-- [ ] Docker support.
 - [ ] Sessions.
 
 
