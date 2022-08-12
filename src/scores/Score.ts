@@ -23,6 +23,9 @@ export class Score {
   public value: number;
 
   @Groups('read')
+  public rank: number;
+
+  @Groups('read')
   @Format('date')
   @Property()
   public createdAt: Date;

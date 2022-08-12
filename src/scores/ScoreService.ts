@@ -1,6 +1,7 @@
 import { Inject, Service } from '@tsed/di';
 import { MongooseModel } from '@tsed/mongoose';
 import { Groups } from '@tsed/schema';
+import mongoose, { PipelineStage } from 'mongoose';
 import { Score } from './Score';
 
 @Service()
@@ -8,12 +9,32 @@ export class ScoreService {
   @Inject(Score)
   private Score: MongooseModel<Score>;
 
-  public async getScores() {
-    return this.Score.find();
+  public async getScores({ _id }: { _id?: string } = {}) {
+    const query = [{
+      $setWindowFields: {
+        sortBy: { value: -1 },
+        output: {
+          rank: {
+            $rank: {}
+          }
+        }
+      }
+    }] as PipelineStage[];
+
+    if (_id) {
+      query.push({ 
+        $match: { 
+          _id: new mongoose.Types.ObjectId(_id) 
+        } 
+      });
+    }
+
+    return this.Score.aggregate(query);
   }
 
   public async getScore(_id: string) {
-    return this.Score.findOne({ _id });
+    const [score] = await this.getScores({ _id });
+    return score;
   }
 
   public async addScore(@Groups('create') score: Score) {
