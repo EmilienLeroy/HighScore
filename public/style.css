@@ -3,11 +3,16 @@
 :root {
   --highscore-primary-rgb: 94, 216, 255;
   --highscore-secondary-rgb: 22, 86, 146;
+  --highscore-white-rgb: 255, 255, 255;
 
   --highscore-primary-color: rgb(var(--highscore-primary-rgb));
   --highscore-secondary-color: rgb(var(--highscore-secondary-rgb));
+  --highscore-white-color: rgb(var(--highscore-white-rgb));
 
+  --highscore-score-gradient-color: linear-gradient(90deg, var(--highscore-white-color) 0%, rgba(var(--highscore-white-rgb), 0.1) 79.84%);
   --highscore-gradient-color: linear-gradient(112.23deg, var(--highscore-primary-color) 0%, var(--highscore-secondary-color) 103.45%);
+
+  --highscore-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 
 * {
@@ -42,7 +47,7 @@ a {
 .highscore__header {
   display: flex;
   align-items: center;
-  color: white;
+  color: var(--highscore-white-color);
   padding: 1.5em 0px;
 }
 
@@ -54,22 +59,22 @@ a {
   font-style: normal;
   font-weight: 800;
   font-size: 40px;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: var(--highscore-shadow);
 }
 
 .highscore__description {
   font-style: italic;
   font-weight: 600;
   font-size: 20px;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: var(--highscore-shadow);
 }
 
 .highscore__leaderboard {
   font-weight: 800;
   font-size: 64px;
   text-transform: uppercase;
-  color: #FFFFFF;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: var(--highscore-white-color);
+  text-shadow: var(--highscore-shadow);
   margin-bottom: 0.4em;
 }
 
@@ -106,16 +111,17 @@ a {
   text-align: center;
   font-weight: 400;
   line-height: 1.5;
-  color: white;
+  color: var(--highscore-white-color);
 }
 
 .score {
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(90deg, #FFFFFF 0%, rgb(255 255 255 / 9%) 79.84%);
+  background: var(--highscore-score-gradient-color);
   border-radius: 20px;
   padding: 20px;
   margin: 10px 0;
+  box-shadow: var(--highscore-shadow);
 }
 
 .score__name, .score__value {
@@ -131,7 +137,7 @@ a {
 }
 
 .score__value {
-  color: white;
+  color: var(--highscore-white-color);
 }
 
 .pagination {
@@ -142,10 +148,10 @@ a {
 }
 
 .pagination__link {
-  color: white;
+  color: var(--highscore-white-color);
   text-decoration: none;
   font-weight: bold;
-  border: solid white;
+  border: solid var(--highscore-white-color);
   padding: 10px 20px;
   width: 100%;
   max-width: 75px;
@@ -161,11 +167,11 @@ a {
 }
 
 .pagination__link[href]:hover {
-  background-color: white;
+  background-color: var(--highscore-white-color);
   color: var(--highscore-primary-color);
 }
 
 .pagination__page {
   font-weight: bold;
-  color: white;
+  color: var(--highscore-white-color);
 }
