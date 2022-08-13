@@ -1,6 +1,6 @@
 {
   "name": "high-score",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "scripts": {
     "build": "npm run barrels && tsc --project tsconfig.compile.json",
@@ -8,7 +8,8 @@
     "start": "npm run barrels && tsnd --inspect --ignore-watch node_modules --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
     "test:lint": "eslint '**/*.{ts,js}'",
-    "test:lint:fix": "eslint '**/*.{ts,js}' --fix"
+    "test:lint:fix": "eslint '**/*.{ts,js}' --fix",
+    "release": "node ./scripts/version"
   },
   "dependencies": {
     "@tsed/ajv": "^6.125.2",
