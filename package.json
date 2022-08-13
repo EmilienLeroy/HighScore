@@ -47,6 +47,7 @@
     "mongoose": "^6.5.1"
   },
   "devDependencies": {
+    "@geut/chan": "^3.2.9",
     "@tsed/cli-plugin-eslint": "3.23.0",
     "@tsed/cli-plugin-mongoose": "3.23.0",
     "@tsed/testing-mongoose": "^6.125.2",
