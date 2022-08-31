@@ -52,7 +52,8 @@ export class ScoreService {
   }
 
   public async addScore(@Groups('create') score: Score) {
-    return new this.Score(score).save();
+    const { id } = await new this.Score(score).save();
+    return this.getScore(id);
   }
 
   public async updateScore(_id: string, @Groups('update') score: Score) {
