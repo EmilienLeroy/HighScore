@@ -4,7 +4,7 @@ import { Controller, Inject } from '@tsed/di';
 import { ScoreService } from './ScoreService';
 import { Score } from './Score';
 import { InternalServerError, NotFound } from '@tsed/exceptions';
-import { BodyParams, PathParams, QueryParams } from '@tsed/common';
+import { BodyParams, PathParams, QueryParams, Request, Session } from '@tsed/common';
 
 @Controller('/scores')
 export class ScoreController {
@@ -27,6 +27,24 @@ export class ScoreController {
     }
   }
 
+  @Get('/me')
+  @Returns(200, Array).Of(Score).Groups('read')
+  public getMyScores(
+    @Request() req: Request,
+    @QueryParams('limit') limit?: number,
+    @QueryParams('skip') skip?: number,
+  ): Promise<Score[]> {
+    try {
+      return this.scoreService.getScores({
+        limit,
+        skip,
+        session: req.sessionID
+      }); 
+    } catch (error) {
+      throw new InternalServerError(error);
+    }
+  }
+
   @Get('/:id')
   @Returns(200, Score).Groups('read')
   public getById(@PathParams('id') id: string) {
@@ -39,9 +57,15 @@ export class ScoreController {
 
   @Post('/')
   @Returns(201, Score).Groups('read')
-  public post(@BodyParams() @Groups('create') score: Score) {
+  public post(
+    @BodyParams() @Groups('create') score: Score,
+    @Request() req: Request
+  ) {
     try {
-      return this.scoreService.addScore(score);
+      return this.scoreService.addScore({ 
+        ...score, 
+        session: req.sessionID 
+      });
     } catch (error) {
       throw new InternalServerError(error);
     }

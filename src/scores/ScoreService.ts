@@ -6,6 +6,7 @@ import { Score } from './Score';
 
 export interface ScoreQuery {
   _id?: string,
+  session?: string,
   skip?: number,
   limit?: number
 }
@@ -15,7 +16,7 @@ export class ScoreService {
   @Inject(Score)
   private Score: MongooseModel<Score>;
 
-  public async getScores({ _id, skip, limit }: ScoreQuery = {}) {
+  public async getScores({ _id, session, skip, limit }: ScoreQuery = {}) {
     const query = [{
       $setWindowFields: {
         sortBy: { value: -1 },
@@ -31,6 +32,14 @@ export class ScoreService {
       query.push({ 
         $match: { 
           _id: new mongoose.Types.ObjectId(_id) 
+        } 
+      });
+    }
+
+    if (session) {
+      query.push({ 
+        $match: { 
+          session
         } 
       });
     }

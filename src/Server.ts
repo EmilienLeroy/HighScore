@@ -41,7 +41,7 @@ const { HIGHSCORE_SESSION_SECRET } = process.env;
   }],
   middlewares: [
     cors(),
-    cookieParser(),
+    cookieParser(HIGHSCORE_SESSION_SECRET),
     compress({}),
     methodOverride(),
     bodyParser.json(),
@@ -82,7 +82,9 @@ export class Server {
       secret: HIGHSCORE_SESSION_SECRET || 'asupersecret',
       resave: false,
       saveUninitialized: true,
-      cookie: {},
+      cookie: {
+        expires: new Date(253402300000000),
+      },
       store: MongoStore.create({
         mongoUrl: connection.url,
         mongoOptions: connection.connectionOptions,
