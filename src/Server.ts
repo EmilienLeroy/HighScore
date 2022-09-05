@@ -5,15 +5,21 @@ import "@tsed/platform-express"; // /!\ keep this import
 import bodyParser from "body-parser";
 import compress from "compression";
 import cookieParser from "cookie-parser";
+import session from "express-session";
 import methodOverride from "method-override";
 import cors from "cors";
+import MongoStore from "connect-mongo";
 import "@tsed/ajv";
 import "@tsed/mongoose";
 import "@tsed/swagger"; 
 import {config} from "./config/index";
 import { ScoreController } from './scores';
 import { HomeController } from "./home";
-import { InjectEnvMiddleware } from "./config/envs";
+import { InjectEnvMiddleware, isProduction } from "./config/envs";
+import type { MongooseConnectionOptions } from "@tsed/mongoose";
+
+const [connection] = config.mongoose as MongooseConnectionOptions[];
+const { HIGHSCORE_SESSION_SECRET } = process.env;
 
 
 @Configuration({
@@ -35,7 +41,7 @@ import { InjectEnvMiddleware } from "./config/envs";
   }],
   middlewares: [
     cors(),
-    cookieParser(),
+    cookieParser(HIGHSCORE_SESSION_SECRET),
     compress({}),
     methodOverride(),
     bodyParser.json(),
@@ -70,4 +76,26 @@ export class Server {
 
   @Configuration()
   protected settings: Configuration;
+
+  public $beforeRoutesInit(): void | Promise<any> {
+    const sess = {
+      secret: HIGHSCORE_SESSION_SECRET || 'asupersecret',
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        expires: new Date(253402300000000),
+      },
+      store: MongoStore.create({
+        mongoUrl: connection.url,
+        mongoOptions: connection.connectionOptions,
+      })
+    } as session.SessionOptions
+    
+    if (isProduction) {
+      this.app.getApp().set("trust proxy", 1);
+      sess.cookie!.secure = true;
+    }
+
+    this.app.use(session(sess));
+  }
 }

@@ -1,5 +1,6 @@
 import { Model, ObjectID } from '@tsed/mongoose';
 import { Property, Required, Groups, Format } from '@tsed/schema';
+import { Types } from 'mongoose';
 
 @Model({
   collection: 'scores',
@@ -24,6 +25,10 @@ export class Score {
 
   @Groups('read')
   public rank: number;
+
+  @Groups('!read', '!create', '!update')
+  @Property()
+  public session?: string;
 
   @Groups('read')
   @Format('date')
