@@ -6,7 +6,7 @@
 
     <div class="highscore__scores">
         <% scores.forEach((score, index) => { %>
-            <div class="score">
+            <a class="score" href="/score/<%= score._id %>">
                 <div class="score__name">
                     <div class="score__position"><%= score.rank %></div>
                     <div><%= score.name %></div>
@@ -15,7 +15,7 @@
                     <div><%= score.value %></div>
                     <div></div>
                 </div>
-            </div>
+            </a>
         <% }) %>
 
         <% if (pages > 1) { %>

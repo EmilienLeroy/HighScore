@@ -1,8 +1,9 @@
 import { Controller, Inject } from "@tsed/di";
 import { Get } from "@tsed/schema";
-import {View} from "@tsed/platform-views";
+import { View } from "@tsed/platform-views";
 import { ScoreService } from "../scores";
-import { QueryParams } from "@tsed/platform-params";
+import { PathParams, QueryParams } from "@tsed/platform-params";
+import { NotFound } from "@tsed/exceptions";
 
 @Controller('/')
 export class HomeController {
@@ -26,5 +27,19 @@ export class HomeController {
       page, 
       pages
     };
+  }
+
+  @Get('/score/:id')
+  @View('score.ejs')
+  public async getScoreView(@PathParams('id') id: string) {
+    const score = await this.scoreService.getScore(id);
+
+    if (!score) {
+      throw new NotFound('Score doesn\'t exist !');
+    }
+
+    return {
+      score,
+    }
   }
 }
