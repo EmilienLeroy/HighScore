@@ -12,7 +12,7 @@
   --highscore-primary-color: rgb(var(--highscore-primary-rgb));
   --highscore-secondary-color: rgb(var(--highscore-secondary-rgb));
   --highscore-white-color: rgb(var(--highscore-white-rgb));
-  --highscore-text-color: rgb(var(var(--highscore-text-rgb)));
+  --highscore-text-color: rgb(var(--highscore-text-rgb));
 
   --highscore-score-gradient-color: linear-gradient(90deg, var(--highscore-white-color) 0%, rgba(var(--highscore-white-rgb), 0.1) 79.84%);
   --highscore-gradient-color: linear-gradient(112.23deg, var(--highscore-primary-color) 0%, var(--highscore-secondary-color) 103.45%);
@@ -54,6 +54,8 @@ a {
   align-items: center;
   color: var(--highscore-white-color);
   padding: 1.5em 1.5em;
+  width: fit-content;
+  text-decoration: none;
 }
 
 .highscore__logo {
@@ -98,6 +100,11 @@ a {
   align-items: center;
   margin-top: 2.5em;
   margin-bottom: 2.5em;
+}
+
+.highscore__main--left {
+  align-items: flex-start;
+  margin: 2.5em;
 }
 
 .highscore__scores {

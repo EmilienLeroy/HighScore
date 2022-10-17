@@ -1,5 +1,19 @@
 <%- include('./_includes/header'); -%>
+    <main class="highscore__main highscore__main--left">
+        <h3 class="highscore__title">
+            <span>#<%= score.rank %></span> <%= score.name %>
+        </h3>
 
-    <%- JSON.stringify(score) %>
+        <div>
+            <p>Score</p>
+            <p><%= score.value %></p>
+        </div>
 
+        <div>
+            <p>Date</p>
+            <p>
+                <%= $day(score.createdAt).format('DD/MM/YY') %>
+            </p>
+        </div>
+    </main>
 <%- include('./_includes/footer'); -%>

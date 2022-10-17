@@ -1,5 +1,6 @@
 import {Context} from "@tsed/platform-params";
 import {MiddlewareMethods, Middleware} from "@tsed/platform-middlewares";
+import dayjs from "dayjs";
 
 const {
   HIGHSCORE_TITLE,
@@ -14,6 +15,7 @@ export class InjectEnvMiddleware implements MiddlewareMethods {
   use(@Context() $ctx: Context) {
     const { locals } = $ctx.response;
 
+    locals.$day = dayjs;
     locals.HIGHSCORE_TITLE = HIGHSCORE_TITLE || 'HighScore';
     locals.HIGHSCORE_DESCRIPTION = HIGHSCORE_DESCRIPTION || 'Open Source leaderboard';
     locals.HIGHSCORE_LOGO_URL = HIGHSCORE_LOGO_URL || '/logo.png';
