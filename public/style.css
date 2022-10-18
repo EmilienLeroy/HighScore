@@ -116,6 +116,8 @@ a {
 }
 
 .highscore__name {
+  display: flex;
+  align-items: center;
   font-family: 'Inter';
   font-style: italic;
   font-weight: 800;
@@ -128,13 +130,20 @@ a {
   background-clip: text;
   padding-right: 0.5em;
   margin-bottom: 0.3em;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  overflow-wrap: break-word;
+  line-height: 1;
 }
 
 .highscore__name span {
+  flex-grow: 1;
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+.highscore__name span i {
   font-weight: 600;
   font-size: 70px;
 }
@@ -281,9 +290,34 @@ a {
     margin-top: 1.5em;
   }
 
+  .highscore__main--left {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
   .highscore__leaderboard {
     font-size: 32px;
   }  
+
+  .highscore__name {
+    font-size: 54px;
+  }
+
+  .highscore__name span i {
+    font-size: 36px;
+  }
+
+  .highscore__text {
+    margin: 10px 10px;
+  }
+
+  .highscore__label {
+    font-size: 32px;
+  }
+
+  .highscore__data {
+    font-size: 46px;
+  }
 
   .score__name, .score__value {
     font-size: 20px;
