@@ -1,17 +1,17 @@
 <%- include('./_includes/header'); -%>
     <main class="highscore__main highscore__main--left">
-        <h3 class="highscore__title">
-            <span>#<%= score.rank %></span> <%= score.name %>
+        <h3 class="highscore__name">
+            <span>#</span><%= score.rank %> <%= score.name %>
         </h3>
 
-        <div>
-            <p>Score</p>
-            <p><%= score.value %></p>
+        <div class="highscore__text">
+            <p class="highscore__label">Score</p>
+            <p class="highscore__data"><%= score.value %></p>
         </div>
 
-        <div>
-            <p>Date</p>
-            <p>
+        <div class="highscore__text">
+            <p class="highscore__label">Date</p>
+            <p class="highscore__data">
                 <%= $day(score.createdAt).format('DD/MM/YY') %>
             </p>
         </div>

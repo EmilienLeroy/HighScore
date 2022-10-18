@@ -14,6 +14,7 @@
   --highscore-white-color: rgb(var(--highscore-white-rgb));
   --highscore-text-color: rgb(var(--highscore-text-rgb));
 
+  --highscore-text-gradient-color: linear-gradient(90deg, var(--highscore-white-color) 0%, rgba(255, 255, 255, 0.12) 100%);
   --highscore-score-gradient-color: linear-gradient(90deg, var(--highscore-white-color) 0%, rgba(var(--highscore-white-rgb), 0.1) 79.84%);
   --highscore-gradient-color: linear-gradient(112.23deg, var(--highscore-primary-color) 0%, var(--highscore-secondary-color) 103.45%);
 
@@ -112,6 +113,58 @@ a {
   max-width: 650px;
   padding: 15px;
   box-sizing: border-box;
+}
+
+.highscore__name {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 800;
+  font-size: 96px;
+  text-transform: capitalize;
+  color: var(--highscore-white-color);
+  background: var(--highscore-text-gradient-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-right: 0.5em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.highscore__name span {
+  font-weight: 600;
+  font-size: 70px;
+}
+
+.highscore__text {
+  margin: 20px;
+}
+
+.highscore__label {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 500;
+  font-size: 40px;
+  text-transform: uppercase;
+  color: var(--highscore-white-color);
+  background: var(--highscore-text-gradient-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-right: 0.5em;
+  line-height: 1;
+}
+
+.highscore__data {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 64px;
+  text-transform: uppercase;
+  color: var(--highscore-white-color);
 }
 
 .highscore__footer {
