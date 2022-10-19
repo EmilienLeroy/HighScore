@@ -1,8 +1,9 @@
 <%- include('./_includes/header'); -%>
     <main class="highscore__main highscore__main--left">
-        <h3 class="highscore__name">
-            <span><i>#</i><%= score.rank %></span> <%= score.name %>
-        </h3>
+        <div class="highscore__text">
+            <p class="highscore__label"><span>#</span><%= score.rank %></p>
+            <p class="highscore__data"><%= score.name %></p>
+        </div>
 
         <div class="highscore__text">
             <p class="highscore__label">Score</p>

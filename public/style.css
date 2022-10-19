@@ -115,39 +115,6 @@ a {
   box-sizing: border-box;
 }
 
-.highscore__name {
-  display: flex;
-  align-items: center;
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 800;
-  font-size: 96px;
-  text-transform: capitalize;
-  color: var(--highscore-white-color);
-  background: var(--highscore-text-gradient-color);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  padding-right: 0.5em;
-  margin-bottom: 0.3em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  line-height: 1;
-}
-
-.highscore__name span {
-  flex-grow: 1;
-  white-space: nowrap;
-  margin-right: 20px;
-}
-
-.highscore__name span i {
-  font-weight: 600;
-  font-size: 70px;
-}
-
 .highscore__text {
   margin: 20px;
 }
@@ -167,13 +134,19 @@ a {
   line-height: 1;
 }
 
+.highscore__label span {
+  font-size: 24px;
+}
+
 .highscore__data {
   font-family: 'Inter';
   font-style: italic;
   font-weight: 700;
   font-size: 64px;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
   color: var(--highscore-white-color);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .highscore__footer {
@@ -298,14 +271,6 @@ a {
   .highscore__leaderboard {
     font-size: 32px;
   }  
-
-  .highscore__name {
-    font-size: 54px;
-  }
-
-  .highscore__name span i {
-    font-size: 36px;
-  }
 
   .highscore__text {
     margin: 10px 10px;
