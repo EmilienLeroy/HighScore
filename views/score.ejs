@@ -16,5 +16,14 @@
                 <%= $day(score.createdAt).format('DD/MM/YY') %>
             </p>
         </div>
+
+        <div class="highscore__text">
+            <button 
+                class="share" 
+                data-title="<%= locals.HIGHSCORE_TITLE %>" 
+                data-text="I made a score of <%= score.value %> on <%= locals.HIGHSCORE_TITLE %>" 
+                data-url="/score/<%= score._id %>"
+            >Share</button>
+        </div>
     </main>
 <%- include('./_includes/footer'); -%>

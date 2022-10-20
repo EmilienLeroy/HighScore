@@ -207,7 +207,7 @@ a {
   margin-top: 50px;
 }
 
-.pagination__link {
+.pagination__link, .share {
   color: var(--highscore-white-color);
   text-decoration: none;
   font-weight: bold;
@@ -226,7 +226,7 @@ a {
   cursor: not-allowed;
 }
 
-.pagination__link[href]:hover {
+.pagination__link[href]:hover, .share:hover {
   background-color: var(--highscore-white-color);
   color: var(--highscore-primary-color);
 }
@@ -236,6 +236,14 @@ a {
   color: var(--highscore-white-color);
 }
 
+.share {
+  background: transparent;
+  font-size: 50px;
+  width: 300px;
+  max-width: 100%;
+  border-radius: 20px;
+  font-style: italic;
+}
 
 @media (max-width: 576px) { 
   .highscore__header {
@@ -291,5 +299,11 @@ a {
   .score__position {
     font-size: 27px;
     margin: 0 15px 0px 2px;
+  }
+  
+  .share {
+    width: 100%;
+    font-size: 36px;
+    padding: 10px 50px;
   }
 }
