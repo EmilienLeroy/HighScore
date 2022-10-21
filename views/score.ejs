@@ -1,4 +1,8 @@
-<%- include('./_includes/header'); -%>
+<%- include('./_includes/header', { 
+        title: `${locals.HIGHSCORE_TITLE} | ${score.name}`,
+        description: `I made a score of ${score.value} on ${locals.HIGHSCORE_TITLE}` 
+    }); 
+-%>
     <main class="highscore__main highscore__main--left">
         <div class="highscore__text">
             <p class="highscore__label"><span>#</span><%= score.rank %></p>

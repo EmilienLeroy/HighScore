@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= locals.title ? title : locals.HIGHSCORE_TITLE %></title>
+    <meta name="title" content="<%= locals.title ? title : locals.HIGHSCORE_TITLE %>">
+    <meta name="description" content="<%= locals.description ? description : locals.HIGHSCORE_DESCRIPTION %>">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<%= locals.title ? title : locals.HIGHSCORE_TITLE %>">
+    <meta property="og:description" content="<%= locals.description ? description : locals.HIGHSCORE_DESCRIPTION %>">
+    <meta property="og:image" content="<%= locals.HIGHSCORE_LOGO_URL  %>">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="<%= locals.title ? title : locals.HIGHSCORE_TITLE %>">
+    <meta property="twitter:description" content="<%= locals.description ? description : locals.HIGHSCORE_DESCRIPTION %>">
+    <meta property="twitter:image" content="<%= locals.HIGHSCORE_LOGO_URL  %>">
+    
     <link rel="stylesheet" href="/style.css">
-    <title><%= locals.HIGHSCORE_TITLE  %></title>
     <link rel="shortcut icon" href="<%= locals.HIGHSCORE_FAVICON_URL  %>" >
     <% if (locals.HIGHSCORE_CSS_URL) { %>
         <link rel="stylesheet" href="<%= locals.HIGHSCORE_CSS_URL  %>">
