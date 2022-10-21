@@ -17,10 +17,25 @@ import { ScoreController } from './scores';
 import { HomeController } from "./home";
 import { InjectEnvMiddleware, isProduction } from "./config/envs";
 import type { MongooseConnectionOptions } from "@tsed/mongoose";
+import { SwaggerSettings } from "@tsed/swagger";
 
 const [connection] = config.mongoose as MongooseConnectionOptions[];
-const { HIGHSCORE_SESSION_SECRET } = process.env;
+const { 
+  HIGHSCORE_SESSION_SECRET,
+  HIGHSCORE_DISABLE_DOCS
+} = process.env;
 
+const useSwagger = () => {
+  if (HIGHSCORE_DISABLE_DOCS === 'true') {
+    return undefined;
+  }
+
+  return [{
+    path: "/docs",
+    pathPatterns: ["/api/**"],
+    specVersion: "3.0.1",
+  }] as SwaggerSettings[];
+}
 
 @Configuration({
   ...config,
@@ -34,11 +49,7 @@ const { HIGHSCORE_SESSION_SECRET } = process.env;
       ScoreController
     ]
   },
-  swagger: [    {
-    path: "/docs",
-    pathPatterns: ["/api/**"],
-    specVersion: "3.0.1"
-  }],
+  swagger: useSwagger(),
   middlewares: [
     cors(),
     cookieParser(HIGHSCORE_SESSION_SECRET),
