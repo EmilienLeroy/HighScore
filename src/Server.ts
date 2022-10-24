@@ -17,26 +17,11 @@ import { ScoreController } from './scores';
 import { HomeController } from "./home";
 import { InjectEnvMiddleware, isProduction } from "./config/envs";
 import type { MongooseConnectionOptions } from "@tsed/mongoose";
-import { SwaggerSettings } from "@tsed/swagger";
 import { useMetrics } from "./config/metrics";
+import { useSwagger } from "./config/swagger";
 
 const [connection] = config.mongoose as MongooseConnectionOptions[];
-const { 
-  HIGHSCORE_SESSION_SECRET,
-  HIGHSCORE_DISABLE_DOCS
-} = process.env;
-
-const useSwagger = () => {
-  if (HIGHSCORE_DISABLE_DOCS === 'true') {
-    return undefined;
-  }
-
-  return [{
-    path: "/docs",
-    pathPatterns: ["/api/**"],
-    specVersion: "3.0.1",
-  }] as SwaggerSettings[];
-}
+const { HIGHSCORE_SESSION_SECRET } = process.env;
 
 @Configuration({
   ...config,
