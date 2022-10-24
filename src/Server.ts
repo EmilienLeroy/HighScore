@@ -18,6 +18,7 @@ import { HomeController } from "./home";
 import { InjectEnvMiddleware, isProduction } from "./config/envs";
 import type { MongooseConnectionOptions } from "@tsed/mongoose";
 import { SwaggerSettings } from "@tsed/swagger";
+import { useMetrics } from "./config/metrics";
 
 const [connection] = config.mongoose as MongooseConnectionOptions[];
 const { 
@@ -106,7 +107,8 @@ export class Server {
       this.app.getApp().set("trust proxy", 1);
       sess.cookie!.secure = true;
     }
-
+    
     this.app.use(session(sess));
+    this.app.get('/metrics', useMetrics)
   }
 }
