@@ -21,12 +21,15 @@ import { useMetrics } from "./config/metrics";
 import { useSwagger } from "./config/swagger";
 
 const [connection] = config.mongoose as MongooseConnectionOptions[];
-const { HIGHSCORE_SESSION_SECRET } = process.env;
+const { 
+  HIGHSCORE_SESSION_SECRET,
+  HIGHSCORE_PORT
+} = process.env;
 
 @Configuration({
   ...config,
   acceptMimes: ["application/json"],
-  httpPort: process.env.PORT || 8083,
+  httpPort: HIGHSCORE_PORT || 8083,
   httpsPort: false,
   componentsScan: false,
   mount: {
