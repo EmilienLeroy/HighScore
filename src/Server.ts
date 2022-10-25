@@ -17,8 +17,8 @@ import { ScoreController } from './scores';
 import { HomeController } from "./home";
 import { InjectEnvMiddleware, isProduction } from "./config/envs";
 import type { MongooseConnectionOptions } from "@tsed/mongoose";
-import { useMetrics } from "./config/metrics";
-import { useSwagger } from "./config/swagger";
+import { isAuthMetrics, useAuthMetrics, useMetrics } from "./config/metrics";
+import { isAuthDocs, useAuthDocs, useSwagger } from "./config/swagger";
 
 const [connection] = config.mongoose as MongooseConnectionOptions[];
 const { 
@@ -95,7 +95,15 @@ export class Server {
       this.app.getApp().set("trust proxy", 1);
       sess.cookie!.secure = true;
     }
-    
+
+    if (isAuthDocs()) {
+      this.app.use('/docs', useAuthDocs());
+    }
+
+    if (isAuthMetrics()) {
+      this.app.use('/metrics', useAuthMetrics());
+    }
+
     this.app.use(session(sess));
     this.app.get('/metrics', useMetrics)
   }

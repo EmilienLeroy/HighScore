@@ -1,6 +1,30 @@
 import { SwaggerSettings } from "@tsed/swagger";
+import basic from "express-basic-auth";
 
-const { HIGHSCORE_DISABLE_DOCS } = process.env;
+const { 
+  HIGHSCORE_USERNAME_DOCS,
+  HIGHSCORE_PASSWORD_DOCS,
+  HIGHSCORE_DISABLE_DOCS 
+} = process.env;
+
+
+const isAuthDocs = () => {
+  return HIGHSCORE_USERNAME_DOCS 
+    && HIGHSCORE_PASSWORD_DOCS 
+    && HIGHSCORE_DISABLE_DOCS !== 'true'
+}
+
+const useAuthDocs = () => {
+  if (!isAuthDocs()) {
+    return;
+  }
+
+  return basic({
+    users: {
+      [HIGHSCORE_USERNAME_DOCS!]: HIGHSCORE_PASSWORD_DOCS!,
+    }
+  })
+}
 
 const useSwagger = () => {
   if (HIGHSCORE_DISABLE_DOCS === 'true') {
@@ -15,5 +39,7 @@ const useSwagger = () => {
 }
 
 export {
-  useSwagger
+  useSwagger,
+  isAuthDocs,
+  useAuthDocs
 }
