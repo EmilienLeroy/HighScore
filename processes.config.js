@@ -7,7 +7,7 @@ module.exports = {
   'apps': [
     {
       name: "api",
-      'script': `${process.env.WORKDIR}/dist/index.js`,
+      'script': `${process.env.WORKDIR}/dist/src/index.js`,
       'cwd': process.env.WORKDIR,
       node_args: process.env.NODE_ARGS || "--max_old_space_size=1800",
       exec_mode: "cluster",

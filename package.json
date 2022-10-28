@@ -6,7 +6,7 @@
     "build": "npm run barrels && tsc --project tsconfig.compile.json",
     "barrels": "barrelsby --config .barrelsby.json",
     "start": "npm run barrels && tsnd --inspect --ignore-watch node_modules --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
-    "start:prod": "cross-env NODE_ENV=production node dist/index.js",
+    "start:prod": "cross-env NODE_ENV=production node dist/src/index.js",
     "test:lint": "eslint '**/*.{ts,js}'",
     "test:lint:fix": "eslint '**/*.{ts,js}' --fix",
     "release": "node ./scripts/version"

@@ -27,7 +27,7 @@ RUN npm install
 COPY processes.config.js .
 
 EXPOSE 8081
-ENV PORT 8081
+ENV HIGHSCORE_PORT 8081
 ENV NODE_ENV production
 
 CMD ["pm2-runtime", "start", "processes.config.js", "--env", "production"]
