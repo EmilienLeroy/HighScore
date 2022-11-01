@@ -62,7 +62,7 @@ volumes:
 ```
 
 :::tip
-To get more informations about environnement variables see the [configuration](/guide/configuration) section.
+Go to the [configuration](/guide/configuration) section to get more informations about each environnement variables.
 :::
 
 And now run this command :

@@ -24,6 +24,10 @@ These are all current variables you can update to configure your highscore insta
 | `HIGHSCORE_FAVICON_URL`| Home page favicon url | string | /favicon.ico |
 | `HIGHSCORE_CSS_URL`| Home page custom css url | string | |
 
+:::tip
+Go to the [customization](/guide/customization) section to get more information about this.
+:::
+
 ## Docs (swagger)
 
 | Variable        | Description       | Type           | Default         |
