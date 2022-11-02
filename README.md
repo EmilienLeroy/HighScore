@@ -15,6 +15,10 @@
   <br/>
 </div>
 
+## Introduction
+
+Highscore is an open source leaderboard api. It allow you to store easly your scores from your games.
+You can also get a leaderboard from highscore to display it into your games. 
 
 ## Feature
 
@@ -23,6 +27,10 @@
 - 📝 Fully documented with open spec (swagger).
 - 🔧 Fully configurable using environnement variable.
 - 📦️ Easy to set up and integrate.
+
+## Documentation
+
+See the [documentation](highscore.emilienleroy.github.io) to get more information about how to install and configure a highscore instance.
 
 ## License
 

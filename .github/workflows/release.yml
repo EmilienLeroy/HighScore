@@ -37,10 +37,27 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+  pages:
+    name: Github Pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - run: npm ci
+      - run: npm run docs:build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: docs/.vitepress/dist
+
   release:
     name: Github Release
     runs-on: ubuntu-latest
-    needs: [docker]
+    needs: [docker, pages]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
