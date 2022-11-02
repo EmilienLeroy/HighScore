@@ -12,7 +12,7 @@ Highscore is under development and it risk to have some majors changes since the
 Personnaly ([Emilien Leroy](https://github.com/EmilienLeroy)) I love make games, especial little mobile game.
 But I hate create an account for each games I play or create. That's why I created Highscore.
 A simple entry point to send my games scores easly without any authentification like an old
-arcard leaderboard.
+arcade leaderboard.
 
 ## Feature
 

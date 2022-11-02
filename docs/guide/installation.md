@@ -73,7 +73,7 @@ $ docker-compose up -d
 
 ## Manual
 :::warning
-Use the source to use in production is possible but not recommanded. 
+Use source in production is possible but not recommanded. 
 :::
 
 ### Prerequisites

@@ -7,7 +7,7 @@ HighScore allow you to customize the default web site using your own brand.
 ## The `/custom` endpoint
 
 By default highscore expose the `custom` folder into a static endpoint `/custom`.
-For example, you have the following files into the `custom` folder :
+For example, if you have the following files into the `custom` folder :
 
 ```
 ├── ...
@@ -28,9 +28,8 @@ https://HIGHSCORE_URL/custom/style.css
 
 ## Environnement variables
 
-Using environnement variable allow you to update the name and the description of the default website.
-But you can also add your own logo and style. Depending on the previous custom configuration. 
-This is a custom configuration :
+Using environnement variables allow you to update the name and the description of the default website.
+But you can also add your own logo and style. This is a custom configuration :
 
 ```
 HIGHSCORE_TITLE=My Custom Leaderboard
@@ -46,8 +45,8 @@ Go to the [configuration](/guide/configuration) section to get more informations
 
 ## CSS variables
 
-If you have added a custom style you can easly update leaderboard using css variable. 
-These are all current css variable :
+If you have added a custom style you can easly update leaderboard colors using css variables. 
+These are all current css variables :
 
 ```css
 :root {
