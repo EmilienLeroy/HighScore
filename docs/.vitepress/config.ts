@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
 	title: 'HighScore',
   description: 'Open Source leaderboard.',
+  base: '/HighScore',
 	themeConfig: {
     logo: '/logo.png',
 
