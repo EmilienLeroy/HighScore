@@ -30,7 +30,7 @@ You can also get a leaderboard from highscore to display it into your games.
 
 ## Documentation
 
-See the [documentation](highscore.emilienleroy.github.io) to get more information about how to install and configure a highscore instance.
+See the [documentation](https://emilienleroy.github.io/HighScore/) to get more information about how to install and configure a highscore instance.
 
 ## Contribute
 
