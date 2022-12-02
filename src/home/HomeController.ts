@@ -4,6 +4,8 @@ import { View } from "@tsed/platform-views";
 import { ScoreService } from "../scores";
 import { PathParams, QueryParams } from "@tsed/platform-params";
 import { NotFound } from "@tsed/exceptions";
+import { envs } from "src/config/envs";
+import { Request, Response } from "@tsed/common";
 
 @Controller('/')
 export class HomeController {
@@ -41,5 +43,38 @@ export class HomeController {
     return {
       score,
     }
+  }
+
+  @Get('/download')
+  public redirectToDownload(@Request() req: Request, @Response() res: Response) {
+    const download = envs['HIGHSCORE_DOWNLOAD_URL'];
+    const android = envs['HIGHSCORE_ANDROID_DOWNLOAD_URL'];
+    const ios = envs['HIGHSCORE_IOS_DOWNLOAD_URL'];
+    const windows = envs['HIGHSCORE_WINDOWS_DOWNLOAD_URL'];
+    const linux = envs['HIGHSCORE_LINUX_DOWNLOAD_URL'];
+    const macos = envs['HIGHSCORE_MACOS_DOWNLOAD_URL'];
+    const os = req.useragent?.platform;
+
+    if (os === 'Android' && android) {
+      return res.redirect(android);
+    }
+
+    if (os === 'iOS' && ios) {
+      return res.redirect(ios);
+    }
+
+    if (os === 'Windows' && windows) {
+      return res.redirect(windows);
+    }   
+    
+    if (os === 'Linux' && linux) {
+      return res.redirect(linux);
+    }
+
+    if (os === 'Mac' && macos) {
+      return res.redirect(macos);
+    }
+
+    return res.redirect(download || '/');
   }
 }

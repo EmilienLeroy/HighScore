@@ -19,6 +19,7 @@ import { InjectEnvMiddleware, isProduction } from "./config/envs";
 import type { MongooseConnectionOptions } from "@tsed/mongoose";
 import { isAuthMetrics, useAuthMetrics, useMetrics } from "./config/metrics";
 import { isAuthDocs, useAuthDocs, useSwagger } from "./config/swagger";
+import * as useragent from "express-useragent";
 
 const [connection] = config.mongoose as MongooseConnectionOptions[];
 const { 
@@ -105,6 +106,7 @@ export class Server {
     }
 
     this.app.use(session(sess));
+    this.app.use(useragent.express());
     this.app.get('/metrics', useMetrics)
   }
 }
