@@ -27,10 +27,18 @@
 </head>
 <body class="highscore">
     <div class="highscore__content">
-        <a class="highscore__header" href="/">
-            <img class="highscore__logo" src="<%= locals.HIGHSCORE_LOGO_URL  %>" alt="">
-            <div class="highscore__alt">
-                <h1 class="highscore__title"><%= locals.HIGHSCORE_TITLE  %></h1>
-                <h2 class="highscore__description"><%= locals.HIGHSCORE_DESCRIPTION  %></h2>
+        <div class="highscore__header">
+            <a class="highscore__brand" href="/">
+                <img class="highscore__logo" src="<%= locals.HIGHSCORE_LOGO_URL  %>" alt="">
+                <div class="highscore__alt">
+                    <h1 class="highscore__title"><%= locals.HIGHSCORE_TITLE  %></h1>
+                    <h2 class="highscore__description"><%= locals.HIGHSCORE_DESCRIPTION  %></h2>
+                </div>
+            </a>
+
+            <div class="highscore__cta">
+                <% if (locals.download) { %>
+                    <a class="download" href="/download">Download</a>
+                <% } %>
             </div>
-        </a>
+        </div>

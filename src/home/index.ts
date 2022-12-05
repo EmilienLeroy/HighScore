@@ -3,3 +3,5 @@
  */
 
 export * from "./HomeController";
+export * from "./HomeMiddleware";
+export * from "./HomeService";
