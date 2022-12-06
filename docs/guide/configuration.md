@@ -16,6 +16,8 @@ These are all current variables you can update to configure your highscore insta
 
 ## Customization
 
+These options allow you to customize the default website.
+
 | Variable        | Description       | Type           | Default         |
 | --------------- | ----------------- | -------------- | --------------- |
 | `HIGHSCORE_TITLE` | Home page title | string | HighScore |
@@ -28,7 +30,23 @@ These are all current variables you can update to configure your highscore insta
 Go to the [customization](/guide/customization) section to get more information about this.
 :::
 
+## Download
+
+These options configure the redirect for the `/download` endpoint depending on the user platform.
+If you haven't configured a platform it will use the `HIGHSCORE_DOWNLOAD_URL` fallback url.
+
+| Variable        | Description       | Type           | Default         |
+| --------------- | ----------------- | -------------- | --------------- |
+| `HIGHSCORE_DOWNLOAD_URL` | Default download link | string |  |
+| `HIGHSCORE_WINDOWS_DOWNLOAD_URL`| Windows download link | string |  |
+| `HIGHSCORE_LINUX_DOWNLOAD_URL`| Linux download link | string |  |
+| `HIGHSCORE_MACOS_DOWNLOAD_URL`| Macos download link | string |  |
+| `HIGHSCORE_ANDROID_DOWNLOAD_URL`| Android download link | string | |
+| `HIGHSCORE_IOS_DOWNLOAD_URL`| iOS download link | string | |
+
 ## Docs (swagger)
+
+These options allow you to configure the `/docs` endpoint.
 
 | Variable        | Description       | Type           | Default         |
 | --------------- | ----------------- | -------------- | --------------- |
@@ -37,6 +55,8 @@ Go to the [customization](/guide/customization) section to get more information 
 | `HIGHSCORE_DISABLE_DOCS` | Disable the `/docs` endpoint | boolean | false |
 
 ## Metrics
+
+These options allow you to configure the `/metrics` endpoint.
 
 | Variable        | Description       | Type           | Default         |
 | --------------- | ----------------- | -------------- | --------------- |

@@ -20,6 +20,7 @@ arcade leaderboard.
 - 🚀 Default website to share your score with everyone. 
 - 📝 Fully documented with open spec (swagger).
 - 🔧 Fully configurable using environnement variable.
+- 📱 Add a download link which redirect user depending on his platform.
 - 📦️ Easy to set up and integrate.
 
 ## Roadmap
