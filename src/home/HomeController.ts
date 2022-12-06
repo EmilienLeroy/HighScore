@@ -6,10 +6,10 @@ import { PathParams, QueryParams } from "@tsed/platform-params";
 import { NotFound } from "@tsed/exceptions";
 import { Request, Response, UseBefore } from "@tsed/common";
 import { HomeService } from "./HomeService";
-import { HomeControllerMiddleware } from "./HomeMiddleware";
+import { HomeMiddleware } from "./HomeMiddleware";
 
 @Controller('/')
-@UseBefore(HomeControllerMiddleware)
+@UseBefore(HomeMiddleware)
 export class HomeController {
   @Inject(HomeService)
   private homeService: HomeService;

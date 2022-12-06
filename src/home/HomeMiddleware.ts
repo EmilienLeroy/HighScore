@@ -4,7 +4,7 @@ import { HomeService } from "./HomeService";
 import { Context, Request } from "@tsed/common";
 
 @Middleware()
-export class HomeControllerMiddleware implements MiddlewareMethods {
+export class HomeMiddleware implements MiddlewareMethods {
   @Inject(HomeService)
   private homeService: HomeService;
 

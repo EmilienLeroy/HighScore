@@ -4,9 +4,11 @@ import { Controller, Inject } from '@tsed/di';
 import { ScoreService } from './ScoreService';
 import { Score } from './Score';
 import { InternalServerError, NotFound } from '@tsed/exceptions';
-import { BodyParams, PathParams, QueryParams, Request, Session } from '@tsed/common';
+import { BodyParams, PathParams, QueryParams, Request, UseBefore } from '@tsed/common';
+import { ScoreMiddleware } from "./ScoreMiddleware";
 
 @Controller('/scores')
+@UseBefore(ScoreMiddleware)
 export class ScoreController {
   @Inject(ScoreService)
   private scoreService: ScoreService;
