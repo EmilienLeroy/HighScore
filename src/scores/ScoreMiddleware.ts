@@ -1,6 +1,7 @@
 import { MiddlewareMethods, Middleware } from "@tsed/platform-middlewares";
 import { Context } from "@tsed/common";
 import { words } from '../../config/ban.json';
+import { envs } from "src/config/envs";
 import BadWordsFilter from "bad-words";
 
 
@@ -9,7 +10,12 @@ export class ScoreMiddleware implements MiddlewareMethods {
   private filter: BadWordsFilter;
   
   constructor() {
-    this.filter = new BadWordsFilter()
+    const { HIGHSCORE_DISABLE_BAD_WORDS } = envs;
+
+    this.filter = new BadWordsFilter({ 
+      emptyList: HIGHSCORE_DISABLE_BAD_WORDS === 'true' 
+    });
+
     this.filter.addWords(...words);
   }
   
