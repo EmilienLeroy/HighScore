@@ -17,6 +17,7 @@ services:
     tty: true
     volumes:
       - ./custom:/opt/custom
+      - ./config/ban.json:/opt/config/ban.json
     environment:
       - HIGHSCORE_DB_URL=mongodb://mongo:27017/highscore
       - HIGHSCORE_TITLE=
