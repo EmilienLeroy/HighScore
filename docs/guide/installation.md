@@ -35,6 +35,7 @@ services:
     volumes:
       - ./custom:/opt/custom
       - ./logs:/opt/logs
+      - ./config/ban.json:/opt/config/ban.json
     environment:
       - HIGHSCORE_PORT=8081
       - HIGHSCORE_DB_URL=mongodb://mongo:27017/highscore
@@ -50,6 +51,7 @@ services:
       - HIGHSCORE_PASSWORD_METRICS=
       - HIGHSCORE_DISABLE_DOCS=
       - HIGHSCORE_DISABLE_METRICS=
+      - HIGHSCORE_DISABLE_BAD_WORDS=
 
   mongo:
     image: mongo:5.0.8

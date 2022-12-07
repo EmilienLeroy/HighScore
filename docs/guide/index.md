@@ -21,10 +21,12 @@ arcade leaderboard.
 - 📝 Fully documented with open spec (swagger).
 - 🔧 Fully configurable using environnement variable.
 - 📱 Add a download link which redirect user depending on his platform.
+- 🚫 Prevent bad words into leaderboards scores.
 - 📦️ Easy to set up and integrate.
 
 ## Roadmap
 
+- Add an achievement system.
 - Add categories using only a `category` field on scores.
 - Add a custom `meta` field to add some custom data.
 

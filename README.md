@@ -27,6 +27,7 @@ You can also get a leaderboard from highscore to display it into your games.
 - 📝 Fully documented with open spec (swagger).
 - 🔧 Fully configurable using environnement variable.
 - 📱 Add a download link which redirect user depending on his platform.
+- 🚫 Prevent bad words into leaderboards scores.
 - 📦️ Easy to set up and integrate.
 
 ## Documentation

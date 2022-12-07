@@ -63,3 +63,12 @@ These options allow you to configure the `/metrics` endpoint.
 | `HIGHSCORE_USERNAME_METRICS` | Username for basic auth of `/metrics`. | string  | |
 | `HIGHSCORE_PASSWORD_METRICS` | Password for basic auth of `/metrics`. | string  | |
 | `HIGHSCORE_DISABLE_METRICS` | Disable the `/metrics` endpoint | boolean | false |
+
+## Bad words
+
+This option allow you to configure the bad words filter.
+If you want add more filter to the bad words list update the `config/ban.json` file.
+
+| Variable        | Description       | Type           | Default         |
+| --------------- | ----------------- | -------------- | --------------- |
+| `HIGHSCORE_DISABLE_BAD_WORDS` | Disable the bad words filter | boolean  | false |
