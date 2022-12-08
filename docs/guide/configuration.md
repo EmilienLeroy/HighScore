@@ -72,3 +72,13 @@ If you want add more filter to the bad words list update the `config/ban.json` f
 | Variable        | Description       | Type           | Default         |
 | --------------- | ----------------- | -------------- | --------------- |
 | `HIGHSCORE_DISABLE_BAD_WORDS` | Disable the bad words filter | boolean  | false |
+
+## Rate limit
+
+This option add a request rate limit to each endpoint of the application.
+
+| Variable        | Description       | Type           | Default         |
+| --------------- | ----------------- | -------------- | --------------- |
+| `HIGHSCORE_RATE_LIMIT_MINUTE` | Define the time for the rate limit in minute | number  | 60 |
+| `HIGHSCORE_RATE_LIMIT_NUMBER` | Number of request limit | number  | 1000 |
+| `HIGHSCORE_DISABLE_RATE_LIMIT` | Disable the rate limit | boolean  | false |
