@@ -2,10 +2,10 @@ name: docs
 
 on:
   push:
-    branches: ["main"]
+    tags:
+      - 'v*'
     paths:
-      - docs
-  workflow_dispatch:
+      - 'docs/**'
 
 permissions:
   contents: read
