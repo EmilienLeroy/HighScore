@@ -19,6 +19,7 @@ import { InjectEnvMiddleware, isProduction } from "./config/envs";
 import type { MongooseConnectionOptions } from "@tsed/mongoose";
 import { isAuthMetrics, useAuthMetrics, useMetrics } from "./config/metrics";
 import { isAuthDocs, useAuthDocs, useSwagger } from "./config/swagger";
+import { useRateLimit } from "./config/limit";
 import * as useragent from "express-useragent";
 
 const [connection] = config.mongoose as MongooseConnectionOptions[];
@@ -45,6 +46,7 @@ const {
     cookieParser(HIGHSCORE_SESSION_SECRET),
     compress({}),
     methodOverride(),
+    useRateLimit(),
     bodyParser.json(),
     bodyParser.urlencoded({
       extended: true
@@ -107,6 +109,6 @@ export class Server {
 
     this.app.use(session(sess));
     this.app.use(useragent.express());
-    this.app.get('/metrics', useMetrics)
+    this.app.get('/metrics', useMetrics);
   }
 }
