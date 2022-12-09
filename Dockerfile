@@ -7,6 +7,7 @@ COPY package.json package-lock.json tsconfig.json tsconfig.compile.json .barrels
 
 RUN npm install
 
+COPY ./config ./config
 COPY ./src ./src
 COPY ./public ./public
 COPY ./views ./views
