@@ -1,6 +1,5 @@
 import { Model, ObjectID } from '@tsed/mongoose';
 import { Property, Required, Groups, Format } from '@tsed/schema';
-import { Types } from 'mongoose';
 
 @Model({
   collection: 'scores',

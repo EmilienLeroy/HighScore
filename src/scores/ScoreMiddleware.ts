@@ -1,7 +1,7 @@
 import { MiddlewareMethods, Middleware } from "@tsed/platform-middlewares";
 import { Context, Next } from "@tsed/common";
 import { words } from '../../config/ban.json';
-import { envs } from "src/config/envs";
+import { envs } from "../config/envs";
 import BadWordsFilter from "bad-words";
 
 

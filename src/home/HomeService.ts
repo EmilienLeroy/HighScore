@@ -1,5 +1,5 @@
 import { Service } from '@tsed/di';
-import { envs } from 'src/config/envs';
+import { envs } from '../config/envs';
 
 @Service()
 export class HomeService {
