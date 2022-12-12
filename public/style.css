@@ -116,6 +116,15 @@ a {
   margin-bottom: 2.5em;
 }
 
+.highscore__main--privacy {
+  align-items: flex-start;
+  color: var(--highscore-white-color);
+}
+
+.highscore__main--privacy li {
+  margin-left: 30px;
+}
+
 .highscore__main--left {
   align-items: flex-start;
   margin: 2.5em;

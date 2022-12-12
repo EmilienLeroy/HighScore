@@ -57,4 +57,10 @@ export class HomeController {
 
     return res.redirect(download || '/');
   }
+
+  @Get('/privacy')
+  @View('privacy.ejs')
+  public getPrivacyView() {
+    return {};
+  }
 }
