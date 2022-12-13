@@ -1,6 +1,5 @@
 <div align="center">
-  <br/><br/>
-  <img src="./.github/HighScore.png" />
+  <img src="./.github/HighScore.png" alt="highscore" />
   <br/><br/>
   
 
