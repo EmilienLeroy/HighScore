@@ -1,2 +1,3 @@
 special-vendored-path/* linguist-vendored
-views/privacy.ejs -linguist-vendored
+
+views/** linguist-vendored
