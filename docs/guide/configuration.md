@@ -82,3 +82,13 @@ This option add a request rate limit to each endpoint of the application.
 | `HIGHSCORE_RATE_LIMIT_MINUTE` | Define the time for the rate limit in minute | number  | 60 |
 | `HIGHSCORE_RATE_LIMIT_NUMBER` | Number of request limit | number  | 1000 |
 | `HIGHSCORE_DISABLE_RATE_LIMIT` | Disable the rate limit | boolean  | false |
+
+## Privacy policy
+
+This option allow you to configure the privacy page with your own information.
+
+| Variable        | Description       | Type           | Default         |
+| --------------- | ----------------- | -------------- | --------------- |
+| `HIGHSCORE_PRIVACY_EMAIL` | Your email address for the privacy policy | string  |  |
+| `HIGHSCORE_PRIVACY_WEBSITE` | Your website address for the privacy policy | string  |  |
+| `HIGHSCORE_PRIVACY_COUNTRY` | Your country | string  |  |
