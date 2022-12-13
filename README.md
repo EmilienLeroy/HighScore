@@ -1,10 +1,9 @@
 <div align="center">
   <br/><br/>
-  <img src="./.github/logo.png" width="215" />
+  <img src="./.github/HighScore.png" />
   <br/><br/>
   
-  
-  # HighScore
+
 [![release](https://github.com/EmilienLeroy/HighScore/actions/workflows/release.yml/badge.svg)](https://github.com/EmilienLeroy/HighScore/actions/workflows/release.yml)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/emilienleroy/highscore)
 ![GitHub](https://img.shields.io/github/license/emilienleroy/highscore)
