@@ -21,6 +21,15 @@
             </p>
         </div>
 
+        <% if (score.meta && typeof score.meta === 'object') { %>
+            <% Object.keys(score.meta).forEach((key) => { %>
+                <div class="highscore__text">
+                    <p class="highscore__label"><%= key %></p>
+                    <p class="highscore__data"><%= score.meta[key] %></p>
+                </div>
+            <% }) %>
+        <% } %>
+
         <div class="highscore__text">
             <button 
                 class="share" 
