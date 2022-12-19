@@ -16,11 +16,13 @@ export class ScoreController {
   @Get()
   @Returns(200, Array).Of(Score).Groups('read')
   public get(
+    @QueryParams('category') category?: string,
     @QueryParams('limit') limit?: number,
     @QueryParams('skip') skip?: number
   ): Promise<Score[]> {
     try {
       return this.scoreService.getScores({
+        category,
         limit,
         skip,
       }); 
@@ -33,11 +35,13 @@ export class ScoreController {
   @Returns(200, Array).Of(Score).Groups('read')
   public getMyScores(
     @Request() req: Request,
+    @QueryParams('category') category?: string,
     @QueryParams('limit') limit?: number,
     @QueryParams('skip') skip?: number,
   ): Promise<Score[]> {
     try {
       return this.scoreService.getScores({
+        category,
         limit,
         skip,
         session: req.sessionID

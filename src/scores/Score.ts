@@ -30,6 +30,10 @@ export class Score {
   public session?: string;
 
   @Groups('read', 'create', 'update')
+  @Property()
+  public category?: string;
+
+  @Groups('read', 'create', 'update')
   @Any('object')
   @Property()
   public meta?: any;

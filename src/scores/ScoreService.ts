@@ -6,6 +6,7 @@ import { Score } from './Score';
 
 export interface ScoreQuery {
   _id?: string,
+  category?: string,
   session?: string,
   skip?: number,
   limit?: number
@@ -16,8 +17,25 @@ export class ScoreService {
   @Inject(Score)
   private Score: MongooseModel<Score>;
 
-  public async getScores({ _id, session, skip, limit }: ScoreQuery = {}) {
-    const query = [{
+  public async getScores({ 
+    _id,
+    category,
+    session,
+    skip,
+    limit, 
+  }: ScoreQuery = {}) {
+    const query = [] as PipelineStage[];
+    const score = await this.Score.findOne({ _id });
+
+    query.push({
+      $match: {
+        category: !category && !score?.category 
+          ? { $eq: null }
+          : category || score?.category, 
+      }
+    });
+   
+    query.push({
       $setWindowFields: {
         sortBy: { value: -1 },
         output: {
@@ -26,7 +44,7 @@ export class ScoreService {
           }
         }
       }
-    }] as PipelineStage[];
+    });
 
     if (_id) {
       query.push({ 
@@ -52,7 +70,7 @@ export class ScoreService {
       query.push({ $limit: limit });
     }
 
-    return this.Score.aggregate(query);
+    return this.Score.aggregate<Score>(query);
   }
 
   public async getScore(_id: string) {
