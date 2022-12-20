@@ -92,8 +92,8 @@ export class ScoreService {
     return this.Score.deleteOne({ _id });
   }
 
-  public async getNumberOfPages(limit: number) {
-    const scores = await this.getScores();
+  public async getNumberOfPages(limit: number, category?: string) {
+    const scores = await this.getScores({ category });
     const pages = scores.length / limit;
 
     return Math.ceil(pages);

@@ -19,18 +19,23 @@ export class HomeController {
 
   @Get("/")
   @View("index.ejs")
-  public async getHomeView(@QueryParams('page') page: number = 1) {
+  public async getHomeView(
+    @QueryParams('category') category?: string,
+    @QueryParams('page') page: number = 1,
+  ) {
     const limit = 50;
     const skip = limit * (page - 1);
 
-    const pages = await this.scoreService.getNumberOfPages(limit);
+    const pages = await this.scoreService.getNumberOfPages(limit, category);
     const scores = await this.scoreService.getScores({
+      category,
       limit,
       skip
     });
 
     return { 
       scores,
+      category,
       page, 
       pages
     };

@@ -104,6 +104,23 @@ a {
   margin-bottom: 0.4em;
 }
 
+.highscore__leaderboard--category {
+  margin-bottom: 0;
+}
+
+.highscore__category {
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 15px;
+  background-image: var(--highscore-score-gradient-color);
+  background-color: var(--highscore-primary-color);
+  color: var(--highscore-secondary-color);
+  text-shadow: var(--highscore-shadow);
+  margin: 10px 0 0 0;
+}
+
 .highscore__leaderboard span {
   font-weight: 300;
 }
@@ -328,6 +345,11 @@ a {
   .highscore__leaderboard {
     font-size: 32px;
   }  
+
+  .highscore__category {
+    font-size: 20px;
+    border-radius: 10px;
+  }
 
   .highscore__text {
     margin: 10px 10px;

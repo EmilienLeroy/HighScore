@@ -1,8 +1,12 @@
 <%- include('./_includes/header'); -%>
 <main class="highscore__main">
-    <h3 class="highscore__leaderboard">
+    <h3 class="highscore__leaderboard highscore__leaderboard--category">
         leader<span>board</span>
     </h3>
+
+    <% if (locals.category) { %>
+        <h4 class="highscore__category"><%= category %></h4>
+    <% } %>
 
     <div class="highscore__scores">
         <% scores.forEach((score, index) => { %>
@@ -23,7 +27,7 @@
                 <a 
                     class="pagination__link" 
                     <% if (page > 1) { %>  
-                        href="/?page=<%= page - 1 %>"
+                        href="/?page=<%= page - 1 %><%= locals.category ? `&category=${category}` : '' %>"
                     <% } %>
                 >
                     previous
@@ -34,7 +38,7 @@
                 <a 
                     class="pagination__link" 
                     <% if (page < pages) { %> 
-                        href="/?page=<%= page + 1 %>"
+                        href="/?page=<%= page + 1 %><%= locals.category ? `&category=${category}` : '' %>"
                     <% } %>
                 >
                     next

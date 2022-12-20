@@ -21,6 +21,13 @@
             </p>
         </div>
 
+        <% if (score.category) { %>
+            <div class="highscore__text">
+                <p class="highscore__label">Category</p>
+                <p class="highscore__data"><%= score.category %></p>
+            </div>
+        <% } %>
+
         <% if (score.meta && typeof score.meta === 'object') { %>
             <% Object.keys(score.meta).forEach((key) => { %>
                 <div class="highscore__text">
