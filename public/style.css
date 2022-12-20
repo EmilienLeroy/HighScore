@@ -210,7 +210,7 @@ a {
   justify-content: space-between;
   background-image: var(--highscore-score-gradient-color);
   color: rgb(var(--highscore-text-rgb));
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 20px;
   margin: 10px 0;
   box-shadow: var(--highscore-shadow);
@@ -231,12 +231,26 @@ a {
 }
 
 .score__position {
+  display: flex;
+  align-items: center;
   font-size: 40px;
   margin: 0 15px 0px 5px;
 }
 
 .score__value {
+  display: flex;
+  align-items: center;
   color: var(--highscore-white-color);
+}
+
+.score__info {
+  line-height: 1.2;
+}
+
+.score__date {
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .pagination {
@@ -365,6 +379,10 @@ a {
 
   .score__name, .score__value {
     font-size: 20px;
+  }
+
+  .score__date {
+    font-size: 12px;
   }
 
   .score__position {

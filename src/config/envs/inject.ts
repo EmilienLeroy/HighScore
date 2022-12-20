@@ -1,6 +1,7 @@
 import {Context} from "@tsed/platform-params";
 import {MiddlewareMethods, Middleware} from "@tsed/platform-middlewares";
 import dayjs from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 const {
   HIGHSCORE_TITLE,
@@ -23,8 +24,11 @@ const {
 export class InjectEnvMiddleware implements MiddlewareMethods {
   use(@Context() $ctx: Context) {
     const { locals } = $ctx.response;
+    const $day = dayjs;
 
-    locals.$day = dayjs;
+    $day.extend(relativeTime);
+
+    locals.$day = $day;
     locals.HIGHSCORE_TITLE = HIGHSCORE_TITLE || 'HighScore';
     locals.HIGHSCORE_DESCRIPTION = HIGHSCORE_DESCRIPTION || 'Open Source leaderboard';
     locals.HIGHSCORE_LOGO_URL = HIGHSCORE_LOGO_URL || '/logo.png';

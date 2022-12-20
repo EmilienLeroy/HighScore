@@ -13,7 +13,10 @@
             <a class="score" href="/score/<%= score._id %>">
                 <div class="score__name">
                     <div class="score__position"><%= score.rank %></div>
-                    <div><%= score.name %></div>
+                    <div class="score__info">
+                        <p><%= score.name %></p>
+                        <p class="score__date"><%= $day(score.createdAt).fromNow() %></p>
+                    </div>
                 </div>
                 <div class="score__value">
                     <div><%= score.value %></div>
