@@ -19,11 +19,19 @@ export default defineConfig({
       '/guide/': [
         {
           text: 'Guide',
+          collapsible: true,
           items: [
             { text: 'Introduction', link: '/guide/' },
             { text: 'Installation', link: '/guide/installation' },
             { text: 'Configuration', link: '/guide/configuration' },
             { text: 'Customization', link: '/guide/customization' }
+          ]
+        },
+        {
+          text: 'Usage',
+          collapsible: true,
+          items: [
+            { text: 'Scores', link: '/guide/scores' }
           ]
         }
       ]
