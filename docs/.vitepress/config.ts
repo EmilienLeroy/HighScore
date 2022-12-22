@@ -32,7 +32,8 @@ export default defineConfig({
           collapsible: true,
           items: [
             { text: 'Scores', link: '/guide/scores' },
-            { text: 'Categories', link: '/guide/categories' }
+            { text: 'Categories', link: '/guide/categories' },
+            { text: 'Download', link: '/guide/download' }
           ]
         }
       ]
