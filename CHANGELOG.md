@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2022-12-23
+### Added
+- Add a `meta` field to the score model to store custom data.
+- Implement a category system by adding a `category` field.
+- Create a category view to display all scores within a specific category.
+- Add a privacy view that can be configured using environment variables.
+
 ## [0.3.0] - 2022-12-09
 ### Added
 - Add a `/download` endpoint. This route allow you to redirect users depending on their platform.
@@ -36,7 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add envs variables to customize the website.
 - Add a spec for the api with openAPI (swagger).
 
-[Unreleased]: https://github.com/EmilienLeroy/HighScore/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/EmilienLeroy/HighScore/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/EmilienLeroy/HighScore/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/EmilienLeroy/HighScore/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/EmilienLeroy/HighScore/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/EmilienLeroy/HighScore/compare/v0.1.1...v0.2.0
