@@ -27,6 +27,5 @@ arcade leaderboard.
 ## Roadmap
 
 - Add an achievement system.
-- Add categories using only a `category` field on scores.
-- Add a custom `meta` field to add some custom data.
+
 
