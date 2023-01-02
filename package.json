@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "build": "npm run barrels && tsc --project tsconfig.compile.json",
-    "barrels": "barrelsby --config .barrelsby.json",
+    "barrels": "barrelsby --config .barrelsby.json -q",
     "start": "npm run barrels && tsnd --inspect --ignore-watch node_modules --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
     "start:prod": "cross-env NODE_ENV=production node dist/src/index.js",
     "test:lint": "eslint '**/*.{ts,js}'",
@@ -75,6 +75,8 @@
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
     "eslint": "^8.21.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "ts-node": "^10.9.1",
