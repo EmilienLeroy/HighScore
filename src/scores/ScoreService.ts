@@ -17,48 +17,48 @@ export class ScoreService {
   @Inject(Score)
   private Score: MongooseModel<Score>;
 
-  public async getScores({ 
+  public async getScores({
     _id,
     category,
     session,
     skip,
-    limit, 
+    limit,
   }: ScoreQuery = {}) {
     const query = [] as PipelineStage[];
     const score = await this.Score.findOne({ _id });
 
     query.push({
       $match: {
-        category: !category && !score?.category 
+        category: !category && !score?.category
           ? { $eq: null }
-          : category || score?.category, 
-      }
+          : category || score?.category,
+      },
     });
-   
+
     query.push({
       $setWindowFields: {
         sortBy: { value: -1 },
         output: {
           rank: {
-            $rank: {}
-          }
-        }
-      }
+            $rank: {},
+          },
+        },
+      },
     });
 
     if (_id) {
-      query.push({ 
-        $match: { 
-          _id: new mongoose.Types.ObjectId(_id) 
-        } 
+      query.push({
+        $match: {
+          _id: new mongoose.Types.ObjectId(_id),
+        },
       });
     }
 
     if (session) {
-      query.push({ 
-        $match: { 
-          session
-        } 
+      query.push({
+        $match: {
+          session,
+        },
       });
     }
 

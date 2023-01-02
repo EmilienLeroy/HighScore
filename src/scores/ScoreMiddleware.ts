@@ -1,24 +1,23 @@
-import { MiddlewareMethods, Middleware } from "@tsed/platform-middlewares";
-import { Context, Next } from "@tsed/common";
+import { MiddlewareMethods, Middleware } from '@tsed/platform-middlewares';
+import { Context, Next } from '@tsed/common';
+import BadWordsFilter from 'bad-words';
 import { words } from '../../config/ban.json';
-import { envs } from "../config/envs";
-import BadWordsFilter from "bad-words";
-
+import { envs } from '../config/envs';
 
 @Middleware()
 export class ScoreMiddleware implements MiddlewareMethods {
   private filter: BadWordsFilter;
-  
+
   constructor() {
     const { HIGHSCORE_DISABLE_BAD_WORDS } = envs;
 
-    this.filter = new BadWordsFilter({ 
-      emptyList: HIGHSCORE_DISABLE_BAD_WORDS === 'true' 
+    this.filter = new BadWordsFilter({
+      emptyList: HIGHSCORE_DISABLE_BAD_WORDS === 'true',
     });
 
     this.filter.addWords(...words);
   }
-  
+
   use(@Context() $ctx: Context, @Next() next: Next) {
     if (!$ctx.request.body) {
       return next();

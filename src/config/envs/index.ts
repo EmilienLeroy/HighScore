@@ -1,10 +1,10 @@
-import dotenv from "dotenv"
+import dotenv from 'dotenv';
 
 export const envs = {
   ...process.env,
-  ...dotenv.config().parsed
+  ...dotenv.config().parsed,
 };
 
-export const isProduction = process.env.NODE_ENV === "production";
+export const isProduction = process.env.NODE_ENV === 'production';
 
-export * from './inject'
+export * from './inject';

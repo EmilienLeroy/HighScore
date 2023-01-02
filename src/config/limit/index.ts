@@ -1,15 +1,15 @@
 import rateLimit from 'express-rate-limit';
 import { envs } from '../envs';
 
-const { 
+const {
   HIGHSCORE_DISABLE_RATE_LIMIT,
   HIGHSCORE_RATE_LIMIT_MINUTE,
-  HIGHSCORE_RATE_LIMIT_NUMBER
+  HIGHSCORE_RATE_LIMIT_NUMBER,
 } = envs;
 
 const useRateLimit = () => {
   if (HIGHSCORE_DISABLE_RATE_LIMIT === 'true') {
-    return;
+    return undefined;
   }
 
   const minute = HIGHSCORE_RATE_LIMIT_MINUTE ? Number(HIGHSCORE_RATE_LIMIT_MINUTE) : 60;
@@ -21,8 +21,8 @@ const useRateLimit = () => {
     standardHeaders: true,
     legacyHeaders: false,
   });
-} 
+};
 
 export {
   useRateLimit,
-}
+};

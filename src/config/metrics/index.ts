@@ -1,17 +1,17 @@
 import { Request, Response } from '@tsed/common';
-import { collectDefaultMetrics, Gauge, Registry } from 'prom-client';
+import { collectDefaultMetrics, Gauge, Registry } from 'prom-client';
+import basic from 'express-basic-auth';
 import { version } from '../../../package.json';
-import basic from "express-basic-auth";
 
-const { 
+const {
   HIGHSCORE_USERNAME_METRICS,
   HIGHSCORE_DISABLE_METRICS,
-  HIGHSCORE_PASSWORD_METRICS
+  HIGHSCORE_PASSWORD_METRICS,
 } = process.env;
 
 const register = new Registry();
 
-collectDefaultMetrics({ 
+collectDefaultMetrics({
   register,
 });
 
@@ -26,23 +26,21 @@ new Gauge({
   },
 });
 
-const isAuthMetrics = () => {
-  return HIGHSCORE_USERNAME_METRICS 
-    && HIGHSCORE_PASSWORD_METRICS 
-    && HIGHSCORE_DISABLE_METRICS !== 'true'
-}
+const isAuthMetrics = () => HIGHSCORE_USERNAME_METRICS
+    && HIGHSCORE_PASSWORD_METRICS
+    && HIGHSCORE_DISABLE_METRICS !== 'true';
 
 const useAuthMetrics = () => {
   if (!isAuthMetrics()) {
-    return;
+    return undefined;
   }
 
   return basic({
     users: {
       [HIGHSCORE_USERNAME_METRICS!]: HIGHSCORE_PASSWORD_METRICS!,
-    }
-  })
-}
+    },
+  });
+};
 
 const useMetrics = async (req: Request, res: Response) => {
   if (HIGHSCORE_DISABLE_METRICS === 'true') {
@@ -51,11 +49,11 @@ const useMetrics = async (req: Request, res: Response) => {
 
   try {
     res.set('Content-Type', register.contentType);
-    res.end(await register.metrics());
+    return res.end(await register.metrics());
   } catch (ex) {
-    res.status(500).end(ex);
+    return res.status(500).end(ex);
   }
-}
+};
 
 export {
   register,

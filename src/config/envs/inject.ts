@@ -1,6 +1,6 @@
-import {Context} from "@tsed/platform-params";
-import {MiddlewareMethods, Middleware} from "@tsed/platform-middlewares";
-import dayjs from "dayjs";
+import { Context } from '@tsed/platform-params';
+import { MiddlewareMethods, Middleware } from '@tsed/platform-middlewares';
+import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 const {
@@ -37,11 +37,11 @@ export class InjectEnvMiddleware implements MiddlewareMethods {
     locals.HIGHSCORE_PRIVACY_WEBSITE = HIGHSCORE_PRIVACY_WEBSITE || '';
     locals.HIGHSCORE_PRIVACY_COUNTRY = HIGHSCORE_PRIVACY_COUNTRY || '';
     locals.HIGHSCORE_CSS_URL = HIGHSCORE_CSS_URL;
-    locals.HIGHSCORE_DOWNLOAD_URL = HIGHSCORE_DOWNLOAD_URL; 
+    locals.HIGHSCORE_DOWNLOAD_URL = HIGHSCORE_DOWNLOAD_URL;
     locals.HIGHSCORE_WINDOWS_DOWNLOAD_URL = HIGHSCORE_WINDOWS_DOWNLOAD_URL;
-    locals.HIGHSCORE_LINUX_DOWNLOAD_URL = HIGHSCORE_LINUX_DOWNLOAD_URL
-    locals.HIGHSCORE_MACOS_DOWNLOAD_URL = HIGHSCORE_MACOS_DOWNLOAD_URL
-    locals.HIGHSCORE_ANDROID_DOWNLOAD_URL = HIGHSCORE_ANDROID_DOWNLOAD_URL
-    locals.HIGHSCORE_IOS_DOWNLOAD_URL = HIGHSCORE_IOS_DOWNLOAD_URL
+    locals.HIGHSCORE_LINUX_DOWNLOAD_URL = HIGHSCORE_LINUX_DOWNLOAD_URL;
+    locals.HIGHSCORE_MACOS_DOWNLOAD_URL = HIGHSCORE_MACOS_DOWNLOAD_URL;
+    locals.HIGHSCORE_ANDROID_DOWNLOAD_URL = HIGHSCORE_ANDROID_DOWNLOAD_URL;
+    locals.HIGHSCORE_IOS_DOWNLOAD_URL = HIGHSCORE_IOS_DOWNLOAD_URL;
   }
 }

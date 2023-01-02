@@ -1,7 +1,7 @@
-import {MiddlewareMethods, Middleware} from "@tsed/platform-middlewares";
-import { Inject } from "@tsed/di";
-import { HomeService } from "./HomeService";
-import { Context, Request } from "@tsed/common";
+import { MiddlewareMethods, Middleware } from '@tsed/platform-middlewares';
+import { Inject } from '@tsed/di';
+import { Context, Request } from '@tsed/common';
+import { HomeService } from './HomeService';
 
 @Middleware()
 export class HomeMiddleware implements MiddlewareMethods {

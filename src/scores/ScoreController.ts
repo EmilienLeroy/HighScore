@@ -1,11 +1,14 @@
-
-import { Delete, Get, Groups, Post, Put, Returns } from '@tsed/schema';
+import {
+  Delete, Get, Groups, Post, Put, Returns,
+} from '@tsed/schema';
 import { Controller, Inject } from '@tsed/di';
+import { InternalServerError, NotFound } from '@tsed/exceptions';
+import {
+  BodyParams, PathParams, QueryParams, Request, UseBefore,
+} from '@tsed/common';
 import { ScoreService } from './ScoreService';
 import { Score } from './Score';
-import { InternalServerError, NotFound } from '@tsed/exceptions';
-import { BodyParams, PathParams, QueryParams, Request, UseBefore } from '@tsed/common';
-import { ScoreMiddleware } from "./ScoreMiddleware";
+import { ScoreMiddleware } from './ScoreMiddleware';
 
 @Controller('/scores')
 @UseBefore(ScoreMiddleware)
@@ -17,15 +20,15 @@ export class ScoreController {
   @Returns(200, Array).Of(Score).Groups('read')
   public get(
     @QueryParams('category') category?: string,
-    @QueryParams('limit') limit?: number,
-    @QueryParams('skip') skip?: number
+      @QueryParams('limit') limit?: number,
+      @QueryParams('skip') skip?: number,
   ): Promise<Score[]> {
     try {
       return this.scoreService.getScores({
         category,
         limit,
         skip,
-      }); 
+      });
     } catch (error) {
       throw new InternalServerError(error);
     }
@@ -35,17 +38,17 @@ export class ScoreController {
   @Returns(200, Array).Of(Score).Groups('read')
   public getMyScores(
     @Request() req: Request,
-    @QueryParams('category') category?: string,
-    @QueryParams('limit') limit?: number,
-    @QueryParams('skip') skip?: number,
+      @QueryParams('category') category?: string,
+      @QueryParams('limit') limit?: number,
+      @QueryParams('skip') skip?: number,
   ): Promise<Score[]> {
     try {
       return this.scoreService.getScores({
         category,
         limit,
         skip,
-        session: req.sessionID
-      }); 
+        session: req.sessionID,
+      });
     } catch (error) {
       throw new InternalServerError(error);
     }
@@ -64,13 +67,13 @@ export class ScoreController {
   @Post('/')
   @Returns(201, Score).Groups('read')
   public post(
-    @BodyParams() @Groups('create') score: Score,
-    @Request() req: Request
+  @BodyParams() @Groups('create') score: Score,
+    @Request() req: Request,
   ) {
     try {
-      return this.scoreService.addScore({ 
-        ...score, 
-        session: req.sessionID 
+      return this.scoreService.addScore({
+        ...score,
+        session: req.sessionID,
       });
     } catch (error) {
       throw new InternalServerError(error);

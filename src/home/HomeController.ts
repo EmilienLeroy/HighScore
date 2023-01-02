@@ -1,12 +1,12 @@
-import { Controller, Inject } from "@tsed/di";
-import { Get } from "@tsed/schema";
-import { View } from "@tsed/platform-views";
-import { ScoreService } from "../scores";
-import { PathParams, QueryParams } from "@tsed/platform-params";
-import { NotFound } from "@tsed/exceptions";
-import { Request, Response, UseBefore } from "@tsed/common";
-import { HomeService } from "./HomeService";
-import { HomeMiddleware } from "./HomeMiddleware";
+import { Controller, Inject } from '@tsed/di';
+import { Get } from '@tsed/schema';
+import { View } from '@tsed/platform-views';
+import { PathParams, QueryParams } from '@tsed/platform-params';
+import { NotFound } from '@tsed/exceptions';
+import { Request, Response, UseBefore } from '@tsed/common';
+import { ScoreService } from '../scores';
+import { HomeService } from './HomeService';
+import { HomeMiddleware } from './HomeMiddleware';
 
 @Controller('/')
 @UseBefore(HomeMiddleware)
@@ -17,10 +17,10 @@ export class HomeController {
   @Inject(ScoreService)
   private scoreService: ScoreService;
 
-  @Get("/")
-  @View("index.ejs")
+  @Get('/')
+  @View('index.ejs')
   public async getHomeView(
-    @QueryParams('category') category?: string,
+  @QueryParams('category') category?: string,
     @QueryParams('page') page: number = 1,
   ) {
     const limit = 50;
@@ -30,14 +30,14 @@ export class HomeController {
     const scores = await this.scoreService.getScores({
       category,
       limit,
-      skip
+      skip,
     });
 
-    return { 
+    return {
       scores,
       category,
-      page, 
-      pages
+      page,
+      pages,
     };
   }
 
@@ -52,11 +52,11 @@ export class HomeController {
 
     return {
       score,
-    }
+    };
   }
 
   @Get('/download')
-  public redirectToDownload(@Request() req: Request, @Response() res: Response) {                    
+  public redirectToDownload(@Request() req: Request, @Response() res: Response) {
     const os = req.useragent?.platform;
     const download = this.homeService.getDownloadLink(os);
 
