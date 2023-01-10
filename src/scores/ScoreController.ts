@@ -2,7 +2,7 @@ import {
   Delete, Get, Groups, Post, Put, Returns,
 } from '@tsed/schema';
 import { Controller, Inject } from '@tsed/di';
-import { InternalServerError, NotFound } from '@tsed/exceptions';
+import { NotFound } from '@tsed/exceptions';
 import {
   BodyParams, PathParams, QueryParams, Request, UseBefore,
 } from '@tsed/common';
@@ -38,16 +38,12 @@ export class ScoreController {
       @QueryParams('limit') limit?: number,
       @QueryParams('skip') skip?: number,
   ): Promise<Score[]> {
-    try {
-      return this.scoreService.getScores({
-        category,
-        limit,
-        skip,
-        session: req.sessionID,
-      });
-    } catch (error) {
-      throw new InternalServerError(error);
-    }
+    return this.scoreService.getScores({
+      category,
+      limit,
+      skip,
+      session: req.sessionID,
+    });
   }
 
   @Get('/:id')
@@ -89,18 +85,14 @@ export class ScoreController {
   }
 
   @Delete('/:id')
+  @Returns(404, NotFound).Description('Score not found')
   public async delete(@PathParams('id') id: string) {
-    const oldScore = this.scoreService.getScore(id);
+    const oldScore = await this.scoreService.getScore(id);
 
     if (!oldScore) {
-      throw new NotFound('Can\'t find score');
+      throw new NotFound('Score not found');
     }
 
-    try {
-      const deleteInfo = await this.scoreService.deleteScore(id);
-      return deleteInfo;
-    } catch (error) {
-      throw new InternalServerError(error);
-    }
+    return this.scoreService.deleteScore(id);
   }
 }

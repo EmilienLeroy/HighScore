@@ -98,6 +98,56 @@ describe('ScoreController', () => {
     });
   });
 
+  describe('GET /api/scores/me', () => {
+    let cookies: string;
+
+    beforeAll(async () => {
+      await new ScoreModel({
+        name: 'Player 0',
+        value: 0,
+      }).save();
+
+      await new ScoreModel({
+        name: 'Player 1',
+        value: 200,
+      }).save();
+
+      await new ScoreModel({
+        name: 'Player 2',
+        value: 5,
+      }).save();
+
+      const { header } = await request.post('/api/scores').send({
+        name: 'My score 1',
+        value: 1750,
+      });
+
+      cookies = header['set-cookie'];
+
+      await request.post('/api/scores').send({
+        name: 'My score 2',
+        value: 3,
+      }).set('Cookie', cookies);
+    });
+
+    afterAll(TestMongooseContext.clearDatabase);
+
+    it('should get only my score', async () => {
+      const { body, status } = await request.get('/api/scores/me').set('Cookie', cookies);
+
+      expect(status).toEqual(200);
+      expect(body).toMatchObject([{
+        name: 'My score 1',
+        value: 1750,
+        rank: 1,
+      }, {
+        name: 'My score 2',
+        value: 3,
+        rank: 4,
+      }]);
+    });
+  });
+
   describe('GET /api/scores/:id', () => {
     let testScore: Score;
 
@@ -243,6 +293,34 @@ describe('ScoreController', () => {
         value: 200,
         rank: 1,
       });
+    });
+  });
+
+  describe('DELETE /api/scores', () => {
+    let testScore: Score;
+
+    beforeAll(async () => {
+      testScore = await new ScoreModel({
+        name: 'Player 1',
+        value: 200,
+      }).save();
+    });
+
+    afterAll(TestMongooseContext.clearDatabase);
+
+    it('should return a 404 if score does not exist', async () => {
+      const fakeId = new mongoose.Types.ObjectId();
+      const { status } = await request.delete(`/api/scores/${fakeId}`);
+
+      expect(status).toEqual(404);
+    });
+
+    it('should delete the score', async () => {
+      // eslint-disable-next-line no-underscore-dangle
+      const { status, body } = await request.delete(`/api/scores/${testScore._id.toString()}`);
+
+      expect(status).toEqual(200);
+      expect(body.deletedCount).toEqual(1);
     });
   });
 });
