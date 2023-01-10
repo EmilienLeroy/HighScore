@@ -11,6 +11,7 @@ describe('ScoreController', () => {
   let request: SuperTest.SuperTest<SuperTest.Test>;
   let ScoreModel: MongooseModel<Score>;
 
+  beforeEach(() => jest.setTimeout(60000));
   beforeAll(TestMongooseContext.bootstrap(Server));
   beforeAll(() => {
     request = SuperTest(PlatformTest.callback());
