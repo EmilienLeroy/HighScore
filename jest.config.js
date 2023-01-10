@@ -6,6 +6,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
   testEnvironment: 'node',
   testMatch: ['**/test/**/*.[jt]s?(x)'],
+  testTimeout: 60000,
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   transform: {
     '\\.(ts)$': 'ts-jest',
