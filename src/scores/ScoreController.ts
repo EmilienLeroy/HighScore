@@ -2,7 +2,7 @@ import {
   Delete, Get, Groups, Post, Put, Returns,
 } from '@tsed/schema';
 import { Controller, Inject } from '@tsed/di';
-import { InternalServerError, NotFound } from '@tsed/exceptions';
+import { NotFound } from '@tsed/exceptions';
 import {
   BodyParams, PathParams, QueryParams, Request, UseBefore,
 } from '@tsed/common';
@@ -23,15 +23,11 @@ export class ScoreController {
       @QueryParams('limit') limit?: number,
       @QueryParams('skip') skip?: number,
   ): Promise<Score[]> {
-    try {
-      return this.scoreService.getScores({
-        category,
-        limit,
-        skip,
-      });
-    } catch (error) {
-      throw new InternalServerError(error);
-    }
+    return this.scoreService.getScores({
+      category,
+      limit,
+      skip,
+    });
   }
 
   @Get('/me')
@@ -42,26 +38,25 @@ export class ScoreController {
       @QueryParams('limit') limit?: number,
       @QueryParams('skip') skip?: number,
   ): Promise<Score[]> {
-    try {
-      return this.scoreService.getScores({
-        category,
-        limit,
-        skip,
-        session: req.sessionID,
-      });
-    } catch (error) {
-      throw new InternalServerError(error);
-    }
+    return this.scoreService.getScores({
+      category,
+      limit,
+      skip,
+      session: req.sessionID,
+    });
   }
 
   @Get('/:id')
   @Returns(200, Score).Groups('read')
-  public getById(@PathParams('id') id: string) {
-    try {
-      return this.scoreService.getScore(id);
-    } catch (error) {
-      throw new InternalServerError(error);
+  @Returns(404, NotFound).Description('Score not found')
+  public async getById(@PathParams('id') id: string) {
+    const score = await this.scoreService.getScore(id);
+
+    if (!score) {
+      throw new NotFound('Score not found');
     }
+
+    return score;
   }
 
   @Post('/')
@@ -70,46 +65,34 @@ export class ScoreController {
   @BodyParams() @Groups('create') score: Score,
     @Request() req: Request,
   ) {
-    try {
-      return this.scoreService.addScore({
-        ...score,
-        session: req.sessionID,
-      });
-    } catch (error) {
-      throw new InternalServerError(error);
-    }
+    return this.scoreService.addScore({
+      ...score,
+      session: req.sessionID,
+    });
   }
 
   @Put('/:id')
   @Returns(200, Score).Groups('read')
+  @Returns(404, NotFound).Description('Score not found')
   public async put(@PathParams('id') id: string, @BodyParams() @Groups('update') score: Score) {
-    const oldScore = this.scoreService.getScore(id);
+    const oldScore = await this.scoreService.getScore(id);
 
     if (!oldScore) {
-      throw new NotFound('Can\'t find score');
+      throw new NotFound('Score not found');
     }
 
-    try {
-      const updatedScore = await this.scoreService.updateScore(id, score);
-      return updatedScore;
-    } catch (error) {
-      throw new InternalServerError(error);
-    }
+    return this.scoreService.updateScore(id, score);
   }
 
   @Delete('/:id')
+  @Returns(404, NotFound).Description('Score not found')
   public async delete(@PathParams('id') id: string) {
-    const oldScore = this.scoreService.getScore(id);
+    const oldScore = await this.scoreService.getScore(id);
 
     if (!oldScore) {
-      throw new NotFound('Can\'t find score');
+      throw new NotFound('Score not found');
     }
 
-    try {
-      const deleteInfo = await this.scoreService.deleteScore(id);
-      return deleteInfo;
-    } catch (error) {
-      throw new InternalServerError(error);
-    }
+    return this.scoreService.deleteScore(id);
   }
 }

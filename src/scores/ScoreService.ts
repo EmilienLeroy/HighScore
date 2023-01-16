@@ -78,12 +78,12 @@ export class ScoreService {
     return score;
   }
 
-  public async addScore(@Groups('create') score: Score) {
+  public async addScore(@Groups('create') score: Partial<Score>) {
     const { id } = await new this.Score(score).save();
     return this.getScore(id);
   }
 
-  public async updateScore(_id: string, @Groups('update') score: Score) {
+  public async updateScore(_id: string, @Groups('update') score: Partial<Score>) {
     await this.Score.updateOne({ _id }, score);
     return this.getScore(_id);
   }

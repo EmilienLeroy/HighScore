@@ -15,11 +15,11 @@ export class HomeService {
       return android;
     }
 
-    if (os === 'iOS' && ios) {
+    if ((os === 'iOS' || os === 'iPhone') && ios) {
       return ios;
     }
 
-    if (os === 'Windows' && windows) {
+    if ((os === 'Windows' || os === 'Microsoft Windows') && windows) {
       return windows;
     }
 
@@ -27,7 +27,7 @@ export class HomeService {
       return linux;
     }
 
-    if (os === 'Mac' && macos) {
+    if ((os === 'Mac' || os === 'Apple Mac') && macos) {
       return macos;
     }
 
