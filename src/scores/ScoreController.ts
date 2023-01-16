@@ -9,6 +9,7 @@ import {
 import { ScoreService } from './ScoreService';
 import { Score } from './Score';
 import { ScoreMiddleware } from './ScoreMiddleware';
+import { ScoreHttpQuery } from './ScoreQuery';
 
 @Controller('/scores')
 @UseBefore(ScoreMiddleware)
@@ -19,29 +20,19 @@ export class ScoreController {
   @Get()
   @Returns(200, Array).Of(Score).Groups('read')
   public get(
-    @QueryParams('category') category?: string,
-      @QueryParams('limit') limit?: number,
-      @QueryParams('skip') skip?: number,
+    @QueryParams() query?: ScoreHttpQuery,
   ): Promise<Score[]> {
-    return this.scoreService.getScores({
-      category,
-      limit,
-      skip,
-    });
+    return this.scoreService.getScores(query);
   }
 
   @Get('/me')
   @Returns(200, Array).Of(Score).Groups('read')
   public getMyScores(
     @Request() req: Request,
-      @QueryParams('category') category?: string,
-      @QueryParams('limit') limit?: number,
-      @QueryParams('skip') skip?: number,
+      @QueryParams() query?: ScoreHttpQuery,
   ): Promise<Score[]> {
     return this.scoreService.getScores({
-      category,
-      limit,
-      skip,
+      ...query,
       session: req.sessionID,
     });
   }

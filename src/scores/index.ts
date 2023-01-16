@@ -5,4 +5,5 @@
 export * from './Score';
 export * from './ScoreController';
 export * from './ScoreMiddleware';
+export * from './ScoreQuery';
 export * from './ScoreService';

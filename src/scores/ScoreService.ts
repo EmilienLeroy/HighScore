@@ -3,14 +3,7 @@ import { MongooseModel } from '@tsed/mongoose';
 import { Groups } from '@tsed/schema';
 import mongoose, { PipelineStage } from 'mongoose';
 import { Score } from './Score';
-
-export interface ScoreQuery {
-  _id?: string,
-  category?: string,
-  session?: string,
-  skip?: number,
-  limit?: number
-}
+import { ScoreQuery } from './ScoreQuery';
 
 @Service()
 export class ScoreService {
