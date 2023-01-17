@@ -1,7 +1,7 @@
 import { Controller, Inject } from '@tsed/di';
 import { Get } from '@tsed/schema';
 import { View } from '@tsed/platform-views';
-import { PathParams, QueryParams } from '@tsed/platform-params';
+import { Context, PathParams, QueryParams } from '@tsed/platform-params';
 import { NotFound } from '@tsed/exceptions';
 import { Request, Response, UseBefore } from '@tsed/common';
 import { ScoreService } from '../scores';
@@ -56,11 +56,11 @@ export class HomeController {
   }
 
   @Get('/download')
-  public redirectToDownload(@Request() req: Request, @Response() res: Response) {
-    const os = req.useragent?.platform;
+  public redirectToDownload(@Context() $ctx: Context) {
+    const os = $ctx.getRequest<Request>().useragent?.platform;
     const download = this.homeService.getDownloadLink(os);
 
-    return res.redirect(download || '/');
+    return $ctx.getResponse<Response>().redirect(download || '/');
   }
 
   @Get('/privacy')
