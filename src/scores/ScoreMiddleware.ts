@@ -1,5 +1,5 @@
 import { MiddlewareMethods, Middleware } from '@tsed/platform-middlewares';
-import { Context, Next } from '@tsed/common';
+import { BodyParams, Context } from '@tsed/common';
 import BadWordsFilter from 'bad-words';
 import { words } from '../../config/ban.json';
 import { envs } from '../config/envs';
@@ -18,13 +18,9 @@ export class ScoreMiddleware implements MiddlewareMethods {
     this.filter.addWords(...words);
   }
 
-  use(@Context() $ctx: Context, @Next() next: Next) {
-    if (!$ctx.request.body) {
-      return next();
+  use(@BodyParams('name') name: string, @Context() $ctx: Context) {
+    if (name) {
+      $ctx.request.body.name = this.filter.clean(name);
     }
-
-    const { name } = $ctx.request.body;
-    $ctx.request.body.name = this.filter.clean(name);
-    return next();
   }
 }
