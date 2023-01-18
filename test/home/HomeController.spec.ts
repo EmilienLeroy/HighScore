@@ -3,7 +3,6 @@ import { MongooseModel } from '@tsed/mongoose';
 import { TestMongooseContext } from '@tsed/testing-mongoose';
 import mongoose from 'mongoose';
 import SuperTest from 'supertest';
-import { envs } from '../../src/config/envs';
 import { Score } from '../../src/scores/Score';
 import { Server } from '../../src/Server';
 
@@ -11,7 +10,19 @@ describe('HomeController', () => {
   let request: SuperTest.SuperTest<SuperTest.Test>;
   let ScoreModel: MongooseModel<Score>;
 
-  beforeAll(TestMongooseContext.bootstrap(Server));
+  beforeAll(TestMongooseContext.bootstrap(Server, {
+    highscore: {
+      download: {
+        default: '/',
+        android: '/android',
+        ios: '/ios',
+        windows: '/windows',
+        linux: '/linux',
+        macos: '/macos',
+      },
+    },
+  }));
+
   beforeAll(() => {
     request = SuperTest(PlatformTest.callback());
     ScoreModel = PlatformTest.get<MongooseModel<Score>>(Score);
@@ -127,14 +138,6 @@ describe('HomeController', () => {
   });
 
   describe('GET /download', () => {
-    beforeAll(() => {
-      envs.HIGHSCORE_WINDOWS_DOWNLOAD_URL = '/windows';
-      envs.HIGHSCORE_LINUX_DOWNLOAD_URL = '/linux';
-      envs.HIGHSCORE_MACOS_DOWNLOAD_URL = '/macos';
-      envs.HIGHSCORE_ANDROID_DOWNLOAD_URL = '/android';
-      envs.HIGHSCORE_IOS_DOWNLOAD_URL = '/ios';
-    });
-
     it('should redirect to the windows link', async () => {
       const { status, text } = await request
         .get('/download')

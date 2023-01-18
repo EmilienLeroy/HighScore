@@ -17,7 +17,7 @@ import * as useragent from 'express-useragent';
 import { config } from './config/index';
 import { ScoreController } from './scores';
 import { HomeController } from './home';
-import { InjectEnvMiddleware, isProduction } from './config/envs';
+import { envs, InjectEnvMiddleware, isProduction } from './config/envs';
 import { isAuthMetrics, useAuthMetrics, useMetrics } from './config/metrics';
 import { isAuthDocs, useAuthDocs, useSwagger } from './config/swagger';
 import { useRateLimit } from './config/limit';
@@ -26,7 +26,13 @@ const [connection] = config.mongoose as MongooseConnectionOptions[];
 const {
   HIGHSCORE_SESSION_SECRET,
   HIGHSCORE_PORT,
-} = process.env;
+  HIGHSCORE_DOWNLOAD_URL,
+  HIGHSCORE_WINDOWS_DOWNLOAD_URL,
+  HIGHSCORE_LINUX_DOWNLOAD_URL,
+  HIGHSCORE_MACOS_DOWNLOAD_URL,
+  HIGHSCORE_ANDROID_DOWNLOAD_URL,
+  HIGHSCORE_IOS_DOWNLOAD_URL,
+} = envs;
 
 @Configuration({
   ...config,
@@ -72,6 +78,16 @@ const {
   exclude: [
     '**/*.spec.ts',
   ],
+  highscore: {
+    download: {
+      default: HIGHSCORE_DOWNLOAD_URL || '',
+      android: HIGHSCORE_ANDROID_DOWNLOAD_URL || '',
+      ios: HIGHSCORE_IOS_DOWNLOAD_URL || '',
+      windows: HIGHSCORE_WINDOWS_DOWNLOAD_URL || '',
+      linux: HIGHSCORE_LINUX_DOWNLOAD_URL || '',
+      macos: HIGHSCORE_MACOS_DOWNLOAD_URL || '',
+    },
+  },
 })
 export class Server {
   @Inject()

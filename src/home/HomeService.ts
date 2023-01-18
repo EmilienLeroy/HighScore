@@ -1,36 +1,26 @@
-import { Service } from '@tsed/di';
-import { envs } from '../config/envs';
+import { Constant, Service } from '@tsed/di';
 
 @Service()
 export class HomeService {
+  @Constant('highscore.download', '')
+  private download: Record<string, string>;
+
+  private get platform(): Record<string, string> {
+    return {
+      default: 'default',
+      android: 'android',
+      ios: 'ios',
+      windows: 'windows',
+      linux: 'linux',
+      macos: 'macos',
+      iphone: 'ios',
+      'apple mac': 'macos',
+      'microsoft windows': 'windows',
+    };
+  }
+
   public getDownloadLink(os?: string) {
-    const download = envs.HIGHSCORE_DOWNLOAD_URL;
-    const android = envs.HIGHSCORE_ANDROID_DOWNLOAD_URL;
-    const ios = envs.HIGHSCORE_IOS_DOWNLOAD_URL;
-    const windows = envs.HIGHSCORE_WINDOWS_DOWNLOAD_URL;
-    const linux = envs.HIGHSCORE_LINUX_DOWNLOAD_URL;
-    const macos = envs.HIGHSCORE_MACOS_DOWNLOAD_URL;
-
-    if (os === 'Android' && android) {
-      return android;
-    }
-
-    if ((os === 'iOS' || os === 'iPhone') && ios) {
-      return ios;
-    }
-
-    if ((os === 'Windows' || os === 'Microsoft Windows') && windows) {
-      return windows;
-    }
-
-    if (os === 'Linux' && linux) {
-      return linux;
-    }
-
-    if ((os === 'Mac' || os === 'Apple Mac') && macos) {
-      return macos;
-    }
-
-    return download;
+    const platform = this.platform[os?.toLocaleLowerCase() || 'default'];
+    return this.download[platform] || this.download.default;
   }
 }
