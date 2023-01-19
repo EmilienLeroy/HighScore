@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { envs, InjectEnvMiddleware } from './envs/index';
+import { envs } from './envs/index';
 import loggerConfig from './logger/index';
 import mongooseConfig from './mongoose/index';
 
@@ -10,5 +10,4 @@ export const config: Partial<TsED.Configuration> = {
   envs,
   logger: loggerConfig,
   mongoose: mongooseConfig,
-  InjectEnvMiddleware,
 };

@@ -5,34 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><%= locals.title ? title : locals.HIGHSCORE_TITLE %></title>
-    <meta name="title" content="<%= locals.title ? title : locals.HIGHSCORE_TITLE %>">
-    <meta name="description" content="<%= locals.description ? description : locals.HIGHSCORE_DESCRIPTION %>">
+    <title><%= locals.title ? title : locals.custom.title %></title>
+    <meta name="title" content="<%= locals.title ? title : locals.custom.title %>">
+    <meta name="description" content="<%= locals.description ? description : locals.custom.title %>">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="<%= locals.title ? title : locals.HIGHSCORE_TITLE %>">
-    <meta property="og:description" content="<%= locals.description ? description : locals.HIGHSCORE_DESCRIPTION %>">
-    <meta property="og:image" content="<%= locals.HIGHSCORE_LOGO_URL  %>">
+    <meta property="og:title" content="<%= locals.title ? title : locals.custom.title %>">
+    <meta property="og:description" content="<%= locals.description ? description : locals.custom.description %>">
+    <meta property="og:image" content="<%= locals.custom.logo  %>">
 
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="<%= locals.title ? title : locals.HIGHSCORE_TITLE %>">
-    <meta property="twitter:description" content="<%= locals.description ? description : locals.HIGHSCORE_DESCRIPTION %>">
-    <meta property="twitter:image" content="<%= locals.HIGHSCORE_LOGO_URL  %>">
+    <meta property="twitter:title" content="<%= locals.title ? title : locals.custom.title %>">
+    <meta property="twitter:description" content="<%= locals.description ? description : locals.custom.description %>">
+    <meta property="twitter:image" content="<%= locals.custom.description  %>">
     
     <link rel="stylesheet" href="/style.css">
-    <link rel="shortcut icon" href="<%= locals.HIGHSCORE_FAVICON_URL  %>" >
-    <% if (locals.HIGHSCORE_CSS_URL) { %>
-        <link rel="stylesheet" href="<%= locals.HIGHSCORE_CSS_URL  %>">
+    <link rel="shortcut icon" href="<%= locals.custom.favicon  %>" >
+    <% if (locals.custom.css) { %>
+        <link rel="stylesheet" href="<%= locals.custom.css  %>">
     <% } %>
 </head>
 <body class="highscore">
     <div class="highscore__content">
         <div class="highscore__header">
             <a class="highscore__brand" href="/">
-                <img class="highscore__logo" src="<%= locals.HIGHSCORE_LOGO_URL  %>" alt="">
+                <img class="highscore__logo" src="<%= locals.custom.logo  %>" alt="">
                 <div class="highscore__alt">
-                    <h1 class="highscore__title"><%= locals.HIGHSCORE_TITLE  %></h1>
-                    <h2 class="highscore__description"><%= locals.HIGHSCORE_DESCRIPTION  %></h2>
+                    <h1 class="highscore__title"><%= locals.custom.title  %></h1>
+                    <h2 class="highscore__description"><%= locals.custom.description  %></h2>
                 </div>
             </a>
 

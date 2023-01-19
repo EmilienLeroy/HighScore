@@ -1,6 +1,6 @@
 <%- include('./_includes/header', { 
-        title: `${locals.HIGHSCORE_TITLE} | ${score.name}`,
-        description: `I made a score of ${score.value} on ${locals.HIGHSCORE_TITLE}` 
+        title: `${locals.custom.title} | ${score.name}`,
+        description: `I made a score of ${score.value} on ${locals.custom.title}` 
     }); 
 -%>
     <main class="highscore__main highscore__main--left">
@@ -40,8 +40,8 @@
         <div class="highscore__text">
             <button 
                 class="share" 
-                data-title="<%= locals.HIGHSCORE_TITLE %>" 
-                data-text="I made a score of <%= score.value %> on <%= locals.HIGHSCORE_TITLE %>" 
+                data-title="<%= locals.custom.title %>" 
+                data-text="I made a score of <%= score.value %> on <%= locals.custom.title %>" 
                 data-url="/score/<%= score._id %>"
             >Share</button>
         </div>

@@ -12,6 +12,10 @@ describe('HomeController', () => {
 
   beforeAll(TestMongooseContext.bootstrap(Server, {
     highscore: {
+      custom: {
+        title: 'My Super Leaderboard',
+        description: 'A super leaderboard for my games',
+      },
       download: {
         default: '/',
         android: '/android',
@@ -19,6 +23,11 @@ describe('HomeController', () => {
         windows: '/windows',
         linux: '/linux',
         macos: '/macos',
+      },
+      privacy: {
+        country: 'france',
+        email: 'test@test.fr',
+        website: 'privacy.test.fr',
       },
     },
   }));
@@ -62,19 +71,7 @@ describe('HomeController', () => {
 
     afterAll(TestMongooseContext.clearDatabase);
 
-    it('should return the home page with the defautl title', async () => {
-      const { status, text } = await request.get('/');
-
-      expect(status).toEqual(200);
-      expect(text).toMatch(/<title>HighScore<\/title>/);
-      expect(text).toMatch(/<p>Player 1<\/p>/);
-      expect(text).toMatch(/<div>2000<\/div>/);
-    });
-
     it('should return the home page with a custom title', async () => {
-      process.env.HIGHSCORE_TITLE = 'My Super Leaderboard';
-      process.env.HIGHSCORE_DESCRIPTION = 'A super leaderboard for my games';
-
       const { status, text } = await request.get('/');
 
       expect(status).toEqual(200);
@@ -198,10 +195,6 @@ describe('HomeController', () => {
 
   describe('GET /privacy', () => {
     it('should get the privacy view with some custom information', async () => {
-      process.env.HIGHSCORE_PRIVACY_EMAIL = 'test@test.fr';
-      process.env.HIGHSCORE_PRIVACY_WEBSITE = 'privacy.test.fr';
-      process.env.HIGHSCORE_PRIVACY_COUNTRY = 'france';
-
       const { status, text } = await request.get('/privacy').set('useragent', '');
 
       expect(status).toEqual(200);

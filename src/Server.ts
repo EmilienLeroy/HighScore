@@ -17,7 +17,7 @@ import * as useragent from 'express-useragent';
 import { config } from './config/index';
 import { ScoreController } from './scores';
 import { HomeController } from './home';
-import { envs, InjectEnvMiddleware, isProduction } from './config/envs';
+import { envs, isProduction } from './config/envs';
 import { isAuthMetrics, useAuthMetrics, useMetrics } from './config/metrics';
 import { isAuthDocs, useAuthDocs, useSwagger } from './config/swagger';
 import { useRateLimit } from './config/limit';
@@ -26,12 +26,20 @@ const [connection] = config.mongoose as MongooseConnectionOptions[];
 const {
   HIGHSCORE_SESSION_SECRET,
   HIGHSCORE_PORT,
+  HIGHSCORE_TITLE,
+  HIGHSCORE_DESCRIPTION,
+  HIGHSCORE_LOGO_URL,
+  HIGHSCORE_FAVICON_URL,
+  HIGHSCORE_CSS_URL,
   HIGHSCORE_DOWNLOAD_URL,
   HIGHSCORE_WINDOWS_DOWNLOAD_URL,
   HIGHSCORE_LINUX_DOWNLOAD_URL,
   HIGHSCORE_MACOS_DOWNLOAD_URL,
   HIGHSCORE_ANDROID_DOWNLOAD_URL,
   HIGHSCORE_IOS_DOWNLOAD_URL,
+  HIGHSCORE_PRIVACY_EMAIL,
+  HIGHSCORE_PRIVACY_WEBSITE,
+  HIGHSCORE_PRIVACY_COUNTRY,
 } = envs;
 
 @Configuration({
@@ -57,7 +65,6 @@ const {
     bodyParser.urlencoded({
       extended: true,
     }),
-    InjectEnvMiddleware,
   ],
   views: {
     root: join(process.cwd(), '../views'),
@@ -79,6 +86,13 @@ const {
     '**/*.spec.ts',
   ],
   highscore: {
+    custom: {
+      title: HIGHSCORE_TITLE || 'HighScore',
+      description: HIGHSCORE_DESCRIPTION || 'Open Source leaderboard',
+      logo: HIGHSCORE_LOGO_URL || '/logo.png',
+      favicon: HIGHSCORE_FAVICON_URL || '/favicon.ico',
+      css: HIGHSCORE_CSS_URL || '',
+    },
     download: {
       default: HIGHSCORE_DOWNLOAD_URL || '',
       android: HIGHSCORE_ANDROID_DOWNLOAD_URL || '',
@@ -86,6 +100,11 @@ const {
       windows: HIGHSCORE_WINDOWS_DOWNLOAD_URL || '',
       linux: HIGHSCORE_LINUX_DOWNLOAD_URL || '',
       macos: HIGHSCORE_MACOS_DOWNLOAD_URL || '',
+    },
+    privacy: {
+      email: HIGHSCORE_PRIVACY_EMAIL || '',
+      website: HIGHSCORE_PRIVACY_WEBSITE || '',
+      country: HIGHSCORE_PRIVACY_COUNTRY || '',
     },
   },
 })
