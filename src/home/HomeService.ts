@@ -9,10 +9,12 @@ export class HomeService {
     return {
       default: 'default',
       android: 'android',
-      ios: 'ios',
       windows: 'windows',
       linux: 'linux',
       macos: 'macos',
+      ios: 'ios',
+      ipad: 'ios',
+      ipod: 'ios',
       iphone: 'ios',
       'apple mac': 'macos',
       'microsoft windows': 'windows',
