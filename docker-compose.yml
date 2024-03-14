@@ -31,5 +31,5 @@ services:
     volumes:
       - data:/data/db
 
-volumes: 
+volumes:
   data:

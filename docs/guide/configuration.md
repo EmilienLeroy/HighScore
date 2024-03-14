@@ -9,7 +9,7 @@ These are all current variables you can update to configure your highscore insta
 
 | Variable          | Description       | Type           | Default         |
 | ----------------  | ----------------- | -------------- | --------------- |
-| `HIGHSCORE_PORT`  |  Define port of the app | number   | 8083            |
+| `HIGHSCORE_PORT`  |  Define port of the app | number   | 8081            |
 | `HIGHSCORE_DB_URL`|  Define mongodb url     | string   | |
 | `HIGHSCORE_SESSION_SECRET`| Secret used for the `express-session` | string | |
 
