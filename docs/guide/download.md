@@ -9,11 +9,11 @@ The `/download` endpoint allows you to redirect users to the appropriate version
 To set up a fallback download option, you must update the `HIGHSCORE_DOWNLOAD_URL` variable. For instance, if you set this variable to `http://yourgame.itch.io`, users will be redirected to this URL if a download link is not available for their platform.
 
 ::: info
-Replace the `http://localhost:8083` by the url of your own instance.
+Replace the `http://localhost:8081` by the url of your own instance.
 :::
 
 ```sh
-curl -X GET 'http://localhost:8083/download'
+curl -X GET 'http://localhost:8081/download'
 ```
 
 You will get the following response :

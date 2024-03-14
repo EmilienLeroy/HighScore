@@ -9,12 +9,12 @@ By default, each score is added to the main leaderboard. However, you can create
 In order to submit a score to a custom leaderboard, you must specify the category by adding the `category` field to the score.
 
 ::: info
-Replace the `http://localhost:8083` by the url of your own instance.
+Replace the `http://localhost:8081` by the url of your own instance.
 :::
 
 ```sh
 curl -X 'POST' \
-  'http://localhost:8083/api/scores' \
+  'http://localhost:8081/api/scores' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -43,12 +43,12 @@ This request will store the score in the `hard` leaderboard :
 If you want to retrieve only scores within a particular category, you can use the `category` query parameter in your request.
 
 ::: info
-Replace the `http://localhost:8083` by the url of your own instance.
+Replace the `http://localhost:8081` by the url of your own instance.
 :::
 
 ```sh
 curl -X 'GET' \
-  'http://localhost:8083/api/scores?category=hard&limit=50' \
+  'http://localhost:8081/api/scores?category=hard&limit=50' \
   -H 'accept: application/json'
 ```
 

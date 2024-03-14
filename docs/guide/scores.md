@@ -15,12 +15,12 @@ You can use the `/docs` endpoint to view a list of all available routes and thei
 To add a score to the leaderboard, you only need to provide two fields in the request body: `name` and `value`. These fields represent the name of the player and the score that they achieved, respectively.
 
 ::: info
-Replace the `http://localhost:8083` by the url of your own instance.
+Replace the `http://localhost:8081` by the url of your own instance.
 :::
 
 ```sh
 curl -X 'POST' \
-  'http://localhost:8083/api/scores' \
+  'http://localhost:8081/api/scores' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{ "name": "Player name", "value": 1000 }'
@@ -56,13 +56,13 @@ Here is an explanation for each field :
 To retrieve a specific score, you will need to know its ID. Here is an example of how to do this :
 
 ::: info
-Replace the `http://localhost:8083` by the url of your own instance.
+Replace the `http://localhost:8081` by the url of your own instance.
 :::
 
 
 ```sh
 curl -X 'GET' \
-  'http://localhost:8083/api/scores/63a2a0c87ce37ecb74897485' \
+  'http://localhost:8081/api/scores/63a2a0c87ce37ecb74897485' \
   -H 'accept: application/json'
 ```
 
@@ -92,7 +92,7 @@ If you have a large number of scores stored in the application, it may take some
 
 ```sh
 curl -X 'GET' \
-  'http://localhost:8083/api/scores' \
+  'http://localhost:8081/api/scores' \
   -H 'accept: application/json'
 ```
 
@@ -100,7 +100,7 @@ curl -X 'GET' \
 
 ```sh
 curl -X 'GET' \
-  'http://localhost:8083/api/scores?limit=50' \
+  'http://localhost:8081/api/scores?limit=50' \
   -H 'accept: application/json'
 ```
 
@@ -108,7 +108,7 @@ curl -X 'GET' \
 
 ```sh
 curl -X 'GET' \
-  'http://localhost:8083/api/scores?limit=50&skip=50' \
+  'http://localhost:8081/api/scores?limit=50&skip=50' \
   -H 'accept: application/json'
 ```
 

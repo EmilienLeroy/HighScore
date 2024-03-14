@@ -45,7 +45,7 @@ const {
 @Configuration({
   ...config,
   acceptMimes: ['application/json'],
-  httpPort: HIGHSCORE_PORT || 8083,
+  httpPort: HIGHSCORE_PORT || 8081,
   httpsPort: false,
   componentsScan: false,
   mount: {
