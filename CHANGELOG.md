@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2024-03-14
+### Fixed
+- Uniformize use of port `8081` in app and doc. [#12](https://github.com/EmilienLeroy/HighScore/issues/12)
+
 ## [0.4.1] - 2023-01-25
 ### Fixed
 - Fixed `/download` redirect for iPhone, iPad and iPod when using `HIGHSCORE_IOS_DOWNLOAD_URL`.
@@ -48,7 +52,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add envs variables to customize the website.
 - Add a spec for the api with openAPI (swagger).
 
-[Unreleased]: https://github.com/EmilienLeroy/HighScore/compare/v0.4.1...HEAD
+[Unreleased]: https://github.com/EmilienLeroy/HighScore/compare/v0.4.2...HEAD
+[0.4.2]: https://github.com/EmilienLeroy/HighScore/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/EmilienLeroy/HighScore/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/EmilienLeroy/HighScore/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/EmilienLeroy/HighScore/compare/v0.2.1...v0.3.0
